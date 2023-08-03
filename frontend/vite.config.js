@@ -9,7 +9,7 @@ const pageData = {
             title: 'my site'
         },
     },
-    '/login.html': {
+    '/pages/login/login.html': {
         names: [{name: 'JORA'}, {name:'OLEG'}, {name:'tit'}],
     }
 };
@@ -20,7 +20,8 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 main: resolve(__dirname, 'src/index.html'),
-                login: resolve(__dirname, 'src/pages/login.html'),
+                login: resolve(__dirname, 'src/pages/login/login.html'),
+                404: resolve(__dirname, 'src/pages/404/404.html'),
             },
         },
     },

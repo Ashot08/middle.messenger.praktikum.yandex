@@ -1,0 +1,9 @@
+.index{
+  @include flexbox(center, center);
+  height: 100vh;
+  &_links a{
+    display: block;
+    text-align: center;
+    margin: 20px 0;
+  }
+}
