@@ -1,6 +1,9 @@
 @import "styles/reset";
+@import "styles/variables";
 @import "styles/mixins";
 @import "styles/index";
 @import "partials/header/header";
 @import "partials/footer/footer";
+@import "partials/link/link";
+@import "partials/error/error";
 

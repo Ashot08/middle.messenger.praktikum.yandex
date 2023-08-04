@@ -6,19 +6,31 @@
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
+
+        <title>
+            {{#if meta.title}}
+                {{~meta.title~}}
+            {{else}}
+                Yandex Practicum Project
+            {{/if}}
+        </title>
+
+        <meta name="description"
+              content="{{#if meta.description}}
+                  {{~meta.description~}}
+              {{else}}
+                Yandex Practicum middle frontend developer project by Ashot08
+        {{/if}}"
+        >
     </head>
 
     <body>
         <div id="app"></div>
-        <div class="index">
-
-            <div class="index_links">
-                <a href="/pages/login/login.html">Login</a>
-                <a href="/pages/404/404.html">404</a>
-            </div>
-
-        </div>
+        <nav class="index">
+            <a href="/pages/login/login.html">Login</a>
+            <a href="/pages/404/404.html">404</a>
+            <a href="/pages/500/500.html">500</a>
+        </nav>
 
 
         <script type="module" src="/main.js"></script>
