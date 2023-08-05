@@ -2,8 +2,13 @@
 @import "styles/variables";
 @import "styles/mixins";
 @import "styles/index";
-@import "partials/header/header";
-@import "partials/footer/footer";
+@import "partials/layout/header/header";
+@import "partials/layout/footer/footer";
+@import "partials/layout/page/page";
 @import "partials/link/link";
 @import "partials/error/error";
+@import "partials/button/button";
+@import "partials/auth-form/auth-form";
+@import "partials/profile-form/profile-form";
+@import "partials/input/input";
 

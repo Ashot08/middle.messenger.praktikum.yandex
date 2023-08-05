@@ -1,7 +1,6 @@
 .error{
   @include flexbox(center, center, nowrap, column);
   height: 100vh;
-  color: $global_font_color;
   &__code{
     font-size: 3.076923077em;
     font-style: normal;

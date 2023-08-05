@@ -1,8 +1,11 @@
-{{>header/header componentStyle="login.scss"}}
+{{>layout/header/header componentStyle="login.scss"}}
 
 <div id="login" class="login">
-    Login
+
+    {{#> layout/page/page }}
+        {{> auth-form/auth-form}}
+    {{/ layout/page/page}}
+
 </div>
 
-
-{{>footer/footer}}
+{{>layout/footer/footer}}

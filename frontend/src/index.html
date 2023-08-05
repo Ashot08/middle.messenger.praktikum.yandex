@@ -25,18 +25,18 @@
     </head>
 
     <body>
+
         <div id="app"></div>
         <nav class="index">
-            <a href="/pages/login/login.html">Login</a>
-            <a href="/pages/404/404.html">404</a>
-            <a href="/pages/500/500.html">500</a>
+            {{> link/link url='/pages/login/login.html' text='Login'}}
+            {{> link/link url='/pages/signup/signup.html' text='Sign up'}}
+            {{> link/link url='/pages/profile/profile.html' text='Profile'}}
+            {{> link/link url='/pages/chat/chat.html' text='Chat'}}
+            {{> link/link url='/pages/404/404.html' text='404'}}
+            {{> link/link url='/pages/500/500.html' text='500'}}
         </nav>
-
-
         <script type="module" src="/main.js"></script>
-
     </body>
-
 </html>
 
 

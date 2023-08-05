@@ -1,0 +1,18 @@
+{{>layout/header/header componentStyle="profile.scss"}}
+
+<div id="profile" class="profile-page">
+
+    {{#> layout/page/page }}
+        {{> profile-form/profile-form}}
+        <div class="profile-page__controls">
+            {{> link/link url='#' text='Изменить данные'}}
+            {{> link/link url='#' text='Изменить пароль'}}
+            {{> link/link url='#' text='Выйти'}}
+        </div>
+    {{/ layout/page/page}}
+
+
+
+</div>
+
+{{>layout/footer/footer}}
