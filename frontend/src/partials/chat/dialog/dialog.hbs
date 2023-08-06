@@ -1,0 +1,16 @@
+<div class="dialog">
+    <div class="dialog__thumbnail">
+        <img src="{{avatarUrl}}" alt="{{title}}">
+    </div>
+    <div class="dialog__content">
+        <div class="dialog__title">{{title}}</div>
+        <div class="dialog__description" title="{{description}}">{{description}}</div>
+    </div>
+    <div class="dialog__badges">
+        <div class="dialog__time">{{lastMessageTime}}</div>
+
+        {{#if unreadMessagesCount}}
+            <div class="dialog__messages-count">{{unreadMessagesCount}}</div>
+        {{/if}}
+    </div>
+</div>

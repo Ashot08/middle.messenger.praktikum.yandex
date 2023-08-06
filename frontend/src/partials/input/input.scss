@@ -27,3 +27,29 @@
     transform: translate(0, -8px);
   }
 }
+.search{
+  @include flexbox(center);
+  padding: 14px 0;
+  border-bottom: 1px solid #EAEAEA;
+  position: relative;
+  input{
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #EFEFEF;
+    padding: 9px 10px;
+    text-align: center;
+    font-size: 0.923076923em;
+    border-radius: 5px;
+  }
+  .label_with-search-icon{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: calc(50% - 35px);
+  }
+  .text-input:valid + .label{
+    visibility: hidden;
+    opacity: 0;
+  }
+}

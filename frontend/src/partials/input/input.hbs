@@ -1,4 +1,11 @@
 <div class="{{class}}">
     <input class="text-input" type="{{type}}" name="{{name}}" id="{{name}}_input" placeholder="{{placeholder}}" {{required}} value="{{value}}">
-    <label class="label label_animated" for="{{name}}_input">{{placeholder}}</label>
+    {{#if isSearch}}
+        <label class="label label_with-search-icon" for="{{name}}_input">
+            <img src="/partials/input/img/search-icon.svg" alt="Search icon">
+        </label>
+    {{else}}
+        <label class="label label_animated" for="{{name}}_input">{{placeholder}}</label>
+    {{/if}}
+
 </div>
