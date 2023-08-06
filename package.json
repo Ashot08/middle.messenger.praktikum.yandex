@@ -10,7 +10,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "vite build && node ../backend/server.js"
+    "start": "vite build && node backend/server.js"
   },
   "devDependencies": {
     "handlebars": "^4.7.8",
