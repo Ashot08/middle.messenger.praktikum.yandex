@@ -23,8 +23,5 @@ export default defineConfig({
             return pageData[pagePath];
         },
         partialDirectory: resolve(__dirname, 'src/partials'),
-        helpers: {
-            capitalize: (str) => str.toUpperCase(),
-        },
     })],
 });

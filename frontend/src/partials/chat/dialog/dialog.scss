@@ -6,6 +6,15 @@
   border-bottom: 1px solid #EAEAEA;
   &__thumbnail{
     width: 20%;
+    overflow: hidden;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    img{
+      display: block;
+      aspect-ratio: 1;
+      object-fit: cover;
+      object-position: center;
+    }
   }
   &__content{
     width: 70%;
@@ -17,6 +26,12 @@
     font-weight: 600;
     margin-bottom: 4px;
     line-height: 1;
+    height: 13px;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
   }
   &__description{
     font-size: 0.923076923em;
