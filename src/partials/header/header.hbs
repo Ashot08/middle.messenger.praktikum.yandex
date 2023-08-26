@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>
+        {{#if meta.title}}
+            {{~meta.title~}}
+        {{else}}
+            Yandex Practicum Project
+        {{/if}}
+    </title>
+
+    <meta name="description"
+        content="{{#if meta.description}}
+            {{~meta.description~}}
+        {{else}}
+                Yandex Practicum middle frontend developer project by Ashot08
+        {{/if}}"
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../../style.scss">
+
+    {{#if componentStyle}}
+        <link type="text/css" rel="stylesheet" href="{{componentStyle}}">
+    {{/if}}
+
+</head>
+<body>
+    <main>
+
+

@@ -1,0 +1,15 @@
+body{
+  color: $global_font_color;
+  font-size: $global_font_size;
+  font-family: $global_font_family;
+}
+.index{
+  @include flexbox(center, center, nowrap, column);
+  height: 100vh;
+  a{
+    display: block;
+    text-align: center;
+    margin: 20px 0;
+  }
+}
+

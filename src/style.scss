@@ -1,0 +1,18 @@
+@import "styles/reset";
+@import "styles/variables";
+@import "styles/mixins";
+@import "styles/index";
+@import "partials/layout/header/header";
+@import "partials/layout/footer/footer";
+@import "partials/layout/page/page";
+@import "partials/link/link";
+@import "partials/error/error";
+@import "partials/button/button";
+@import "partials/auth-form/auth-form";
+@import "partials/profile-form/profile-form";
+@import "partials/input/input";
+@import "partials/chat/dialog/dialog";
+@import "partials/chat/dialog-body/dialog-body";
+@import "partials/chat/dialog-body/dialog-warning/dialog-warning";
+@import "partials/chat/dialog-search/dialog-search";
+

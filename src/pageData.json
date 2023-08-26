@@ -1,0 +1,229 @@
+{
+  "/index.html": {
+    "meta": {
+      "title": "Yandex Practicum Project",
+      "description": "Yandex Practicum middle frontend developer project by Ashot08"
+    }
+  },
+  "/pages/login/login.html": {
+    "title": "Вход",
+    "meta": {
+      "title": "Login Page",
+      "description": "Login Page - Yandex Practicum middle frontend developer project by Ashot08"
+    },
+    "link": {
+      "url": "/pages/signup/signup.html",
+      "text": "Нет аккаунта?"
+    },
+    "fields": [
+      {
+        "type": "text",
+        "name": "login",
+        "placeholder": "Логин",
+        "required": "required"
+      },
+      {
+        "type": "password",
+        "name": "password",
+        "placeholder": "Пароль",
+        "required": "required"
+      }
+    ],
+    "button": {
+      "text": "Вход"
+    }
+  },
+  "/pages/signup/signup.html": {
+    "title": "Регистрация",
+    "meta": {
+      "title": "Sign up Page",
+      "description": "Sign up Page - Yandex Practicum middle frontend developer project by Ashot08"
+    },
+    "link": {
+      "url": "/pages/login/login.html",
+      "text": "Войти"
+    },
+    "fields": [
+      {
+        "type": "email",
+        "name": "email",
+        "placeholder": "Почта",
+        "required": "required"
+      },
+      {
+        "type": "text",
+        "name": "login",
+        "placeholder": "Логин",
+        "required": "required"
+      },
+      {
+        "type": "text",
+        "name": "first_name",
+        "placeholder": "Имя",
+        "required": "required"
+      },
+      {
+        "type": "text",
+        "name": "second_name",
+        "placeholder": "Фамилия",
+        "required": "required"
+      },
+      {
+        "type": "text",
+        "name": "phone",
+        "placeholder": "Телефон",
+        "required": "required"
+      },
+      {
+        "type": "password",
+        "name": "password",
+        "placeholder": "Пароль",
+        "required": "required"
+      },
+      {
+        "type": "password",
+        "name": "password_again",
+        "placeholder": "Пароль (ещё раз)",
+        "required": "required"
+      }
+    ],
+    "button": {
+      "text": "Регистрация"
+    }
+  },
+  "/pages/profile/profile.html": {
+    "userData": {
+      "name": "ОЛЕГ",
+      "avatarUrl": "/src/pages/profile/img/default_avatar.png"
+    },
+    "meta": {
+      "title": "Profile Page",
+      "description": "Profile Page - Yandex Practicum middle frontend developer project by Ashot08"
+    },
+    "fields": [
+      {
+        "type": "email",
+        "name": "email",
+        "placeholder": "Почта",
+        "required": "required",
+        "value": "oleg@yandex.ru"
+      },
+      {
+        "type": "text",
+        "name": "login",
+        "placeholder": "Логин",
+        "required": "required",
+        "value": "oleg"
+      },
+      {
+        "type": "text",
+        "name": "first_name",
+        "placeholder": "Имя",
+        "required": "required",
+        "value": "Oleg"
+      },
+      {
+        "type": "text",
+        "name": "second_name",
+        "placeholder": "Фамилия",
+        "required": "required",
+        "value": "Panov"
+      },
+      {
+        "type": "text",
+        "name": "display_name",
+        "placeholder": "Имя в чате",
+        "required": "required",
+        "value": "olegus334"
+      },
+      {
+        "type": "text",
+        "name": "phone",
+        "placeholder": "Телефон",
+        "required": "required",
+        "value": "8-913-253-33-22"
+      }
+    ],
+    "avatarDefaultUrl": "img/default_avatar.png"
+  },
+  "/pages/chat/chat.html": {
+    "meta": {
+      "title": "Chat Page",
+      "description": "Chat Page - Yandex Practicum middle frontend developer project by Ashot08"
+    },
+    "dialogs": [
+      {
+        "title": "Ivan Panov",
+        "description": "че ниотвечаешь.?",
+        "avatarUrl": "/partials/chat/img/default_avatar.png",
+        "unreadMessagesCount": "6",
+        "lastMessageTime": "12:00"
+      },
+      {
+        "title": "Семен",
+        "description": "Lorem Ipsum - это текст-рыба, часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной рыбой для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.\n                        ",
+        "avatarUrl": "/partials/chat/img/profile_photo.png",
+        "unreadMessagesCount": "2",
+        "lastMessageTime": "12:30"
+      },
+      {
+        "title": "Сергей (риэлтор)",
+        "description": "Не пиши сюда больше. Денег нет, я сейчас не в городе.",
+        "avatarUrl": "/partials/chat/img/default_avatar.png",
+        "unreadMessagesCount": "",
+        "lastMessageTime": "Пт"
+      },
+      {
+        "title": "Валентина ЖЭК",
+        "description": "Когда погасите задолженность за коммуналку? На дом собираются подавать в суд из-за вас и таких как вы.",
+        "avatarUrl": "/partials/chat/img/default_avatar.png",
+        "unreadMessagesCount": "1",
+        "lastMessageTime": "Ср"
+      },
+      {
+        "title": "Илья Иванов",
+        "description": "Добрый день, отклик на вакансию",
+        "avatarUrl": "/partials/chat/img/default_avatar.png",
+        "unreadMessagesCount": "",
+        "lastMessageTime": "Ср"
+      },
+      {
+        "title": "Елена Правдина",
+        "description": "Здравствуйте, по вашему обращению создан тикет #345, мы с вами свяжемся, как только получим ответ от специалиста.",
+        "avatarUrl": "/partials/chat/img/default_avatar.png",
+        "unreadMessagesCount": "",
+        "lastMessageTime": "Вт"
+      }
+    ],
+    "avatarDefaultUrl": "img/default_avatar.png"
+  },
+  "/pages/404/404.html": {
+    "meta": {
+      "title": "404 - Not Found Page",
+      "description": "404 Not Found Page - Yandex Practicum middle frontend developer project by Ashot08"
+    },
+    "link": {
+      "url": "/",
+      "text": "Назад к чатам"
+    },
+    "error": {
+      "code": "404",
+      "description": "Не туда попали"
+    }
+  },
+  "/pages/500/500.html": {
+    "meta": {
+      "title": "500 - Server Error",
+      "description": "500 Server Error Page - Yandex Practicum middle frontend developer project by Ashot08"
+    },
+    "link": {
+      "url": "/",
+      "text": "Назад к чатам"
+    },
+    "error": {
+      "code": "500",
+      "description": "Мы уже фиксим"
+    }
+  }
+}
+
