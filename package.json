@@ -7,12 +7,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run lint && vite",
+    "dev": "npm run lint && npm run stylelint && vite",
     "build": "npm run prebuild && vite build",
     "prebuild": "tsc --noEmit",
     "preview": "vite preview",
     "start": "vite build && node server.js",
-    "lint": "eslint '**/*.ts'"
+    "lint": "eslint '**/*.ts'",
+    "stylelint": "npx stylelint \"**/*.scss\""
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.4.1",
