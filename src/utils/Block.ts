@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import EventBus from './EventBus';
 
 export default class Block {
@@ -11,21 +12,24 @@ export default class Block {
   private _element: HTMLElement | null = null;
 
   private _meta: {
-    props: any,
-    tagName: string
+    tagName: string,
+    props: object,
   };
 
   private eventBus: EventBus;
 
-  private props: object;
+  protected props: object;
 
-  /** JSDoc
-     * @param {string} tagName
-     * @param {Object} props
-     *
-     * @returns {void}
-     */
-  constructor(tagName: string = 'div', props: object = {}) {
+  public id = nanoid(6);
+
+  public children: Record<string, Block>;
+
+  protected refs: Record<string, Block> = {};
+
+  constructor(tagName: string = 'div', propsWithChildren: object = {}) {
+
+    const {props, children} = this._getChildrenAndProps(propsWithChildren);
+
     this._meta = {
       tagName,
       props,
@@ -33,12 +37,37 @@ export default class Block {
 
     this.props = this._makePropsProxy(props);
 
+    this.children = children;
+
     this.eventBus = new EventBus();
 
     this._registerEvents(this.eventBus);
+
     this.eventBus.emit(Block.EVENTS.INIT);
   }
 
+  _getChildrenAndProps(childrenAndProps: any) {
+    const props: Record<string, any> = {};
+    const children: Record<string, Block> = {};
+
+    Object.entries(childrenAndProps).forEach(([key, value]) => {
+      if (value instanceof Block) {
+        children[key] = value;
+      } else {
+        props[key] = value;
+      }
+    });
+
+    return {props, children};
+  }
+
+  _addEvents() {
+    const {events = {}} = this.props as { events: Record<string, () => void> };
+
+    Object.keys(events).forEach(eventName => {
+      this._element?.addEventListener(eventName, events[eventName]);
+    });
+  }
   _registerEvents(eventBus: EventBus): void {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
@@ -93,15 +122,31 @@ export default class Block {
     return this._element;
   }
 
-  _render(): void {
-    const block = this.render();
-    const element = this._element;
-    if (element) {
-      element.innerHTML = block;
+  private _render(): void {
+    const fragment = this.render();
+    const newElement = fragment.firstElementChild as HTMLElement;
+    if (this._element) {
+      this._element.replaceWith(newElement);
     }
+    this._element = newElement;
+    this._addEvents();
   }
 
   render(): any {}
+
+  protected compile(template: (context: any) => string, context: any) {
+    const contextAndStubs = { ...context, __refs: this.refs };
+    const html = template(contextAndStubs);
+    const temp = document.createElement('template');
+
+    temp.innerHTML = html;
+
+    contextAndStubs.__children?.forEach(({ embed }: any) => {
+      embed(temp.content);
+    });
+
+    return temp.content;
+  }
 
   getContent() {
     return this.element;
