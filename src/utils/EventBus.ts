@@ -1,4 +1,6 @@
 export default class EventBus {
+  private readonly listeners: Record<string, Array<Function>> = {};
+
   constructor() {
     this.listeners = {};
   }
