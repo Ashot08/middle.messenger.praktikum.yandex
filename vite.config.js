@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import handlebars from 'vite-plugin-handlebars'
 import { resolve } from 'path';
 import pageData from './src/pageData.json' assert {type: 'json'};
+import checker from "vite-plugin-checker";
 
 export default defineConfig({
     root: resolve(__dirname, 'src'),
@@ -18,11 +19,16 @@ export default defineConfig({
             },
         },
     },
-    plugins: [handlebars({
-        context(pagePath) {
-            return pageData[pagePath];
-        },
-        partialDirectory: resolve(__dirname, 'src/partials'),
-    })],
+    plugins: [
+        handlebars({
+            context(pagePath) {
+                return pageData[pagePath];
+            },
+            partialDirectory: resolve(__dirname, 'src/partials'),
+        }),
+        checker({
+            typescript: true,
+        }),
+    ],
 });
 
