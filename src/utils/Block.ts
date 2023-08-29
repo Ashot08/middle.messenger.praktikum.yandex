@@ -11,11 +11,6 @@ export default class Block {
 
   private _element: HTMLElement | null = null;
 
-  private _meta: {
-    tagName: string,
-    props: object,
-  };
-
   private eventBus: EventBus;
 
   protected props: object;
@@ -26,14 +21,8 @@ export default class Block {
 
   protected refs: Record<string, Block> = {};
 
-  constructor(tagName: string = 'div', propsWithChildren: object = {}) {
-
-    const {props, children} = this._getChildrenAndProps(propsWithChildren);
-
-    this._meta = {
-      tagName,
-      props,
-    };
+  constructor(propsWithChildren: object = {}) {
+    const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
     this.props = this._makePropsProxy(props);
 
@@ -58,16 +47,17 @@ export default class Block {
       }
     });
 
-    return {props, children};
+    return { props, children };
   }
 
   _addEvents() {
-    const {events = {}} = this.props as { events: Record<string, () => void> };
+    const { events = {} } = this.props as { events: Record<string, () => void> };
 
-    Object.keys(events).forEach(eventName => {
+    Object.keys(events).forEach((eventName) => {
       this._element?.addEventListener(eventName, events[eventName]);
     });
   }
+
   _registerEvents(eventBus: EventBus): void {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
@@ -75,13 +65,7 @@ export default class Block {
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  _createResources(): void {
-    const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName);
-  }
-
   init(): void {
-    this._createResources();
     this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
   }
 
@@ -105,8 +89,7 @@ export default class Block {
   }
 
   componentDidUpdate(oldProps: object, newProps: object): boolean {
-    console.log(oldProps);
-    console.log(newProps);
+    console.log(oldProps, newProps);
     return true;
   }
 

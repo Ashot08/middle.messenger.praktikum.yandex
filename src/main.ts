@@ -1,10 +1,10 @@
-import Button from './components/button';
 import registerComponent from './utils/registerComponent';
-import Card from './components/card';
+import Base from './components/layout/base';
 import render from './utils/render';
+import Link from './components/link';
 
-registerComponent('Button', Button);
-registerComponent('Card', Card);
+registerComponent('Base', Base);
+registerComponent('Link', Link);
 
 window.addEventListener('DOMContentLoaded', () => {
   render('home');

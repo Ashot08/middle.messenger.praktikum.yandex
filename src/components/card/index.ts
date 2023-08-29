@@ -3,8 +3,9 @@ import template from './card.hbs';
 
 export default class Card extends Block {
   constructor() {
-    super('div', {});
+    super({});
   }
+
   render() {
     return this.compile(template, this.props);
   }

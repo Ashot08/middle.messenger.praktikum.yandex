@@ -1,9 +1,10 @@
-<div>
-    <h1>Home page</h1>
-    {{#Card}}
-        {{{Button ref="button" label=buttonLabel onClick=onButtonClick}}}
-        {{#each buttons}}
-            {{{Button label=this.label type=../type onClick=this.onClick}}}
-        {{/each}}
-    {{/Card}}
-</div>
+{{#Base}}
+    <nav class="index">
+        {{{Link onClick=onLinkClick url='login' text='Login'}}}
+        {{{Link onClick=onLinkClick url='/pages/signup/signup.html' text='Sign up'}}}
+        {{{Link onClick=onLinkClick url='/pages/profile/profile.html' text='Profile'}}}
+        {{{Link onClick=onLinkClick url='/pages/chat/chat.html' text='Chat'}}}
+        {{{Link onClick=onLinkClick url='/pages/404/404.html' text='404'}}}
+        {{{Link onClick=onLinkClick url='/pages/500/500.html' text='500'}}}
+    </nav>
+{{/Base}}

@@ -5,21 +5,8 @@ import render from '../../utils/render';
 export default class HomePage extends Block {
   constructor() {
     super(
-      'div',
       {
-        type: 'button',
-
-        buttons: [
-          {
-            label: 'Login',
-            onClick: () => {
-              render('login');
-            },
-          },
-          {
-            label: 'Button 2',
-          },
-        ],
+        onLinkClick: (e: any) => { e.preventDefault(); render(e.target.getAttribute('href')); },
       },
     );
   }
