@@ -1,9 +1,11 @@
 import HomePage from '../pages/home';
 import LoginPage from '../pages/login';
+import SignupPage from '../pages/signup';
 
 const ROUTES = {
   home: HomePage,
   login: LoginPage,
+  signup: SignupPage,
 };
 
 export default function render(name: keyof typeof ROUTES) {
