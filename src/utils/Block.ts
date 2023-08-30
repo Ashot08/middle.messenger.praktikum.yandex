@@ -70,26 +70,25 @@ export default class Block {
   }
 
   _componentDidMount(): void {
-    this.componentDidMount({});
+    this.componentDidMount();
   }
 
-  componentDidMount(oldProps: object) {
-    console.log(oldProps);
+  componentDidMount() {
+
   }
 
   dispatchComponentDidMount(): void {
     this.eventBus.emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps: object, newProps: object): void {
-    const response = this.componentDidUpdate(oldProps, newProps);
+  _componentDidUpdate(): void {
+    const response = this.componentDidUpdate();
     if (response) {
       this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  componentDidUpdate(oldProps: object, newProps: object): boolean {
-    console.log(oldProps, newProps);
+  componentDidUpdate(): boolean {
     return true;
   }
 

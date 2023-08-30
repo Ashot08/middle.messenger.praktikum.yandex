@@ -1,4 +1,6 @@
 @use "sass:color";
+@import "../../styles/mixins";
+@import "../../styles/variables";
 
 .profile-form{
   width: 510px;

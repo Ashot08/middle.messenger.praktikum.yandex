@@ -1,6 +1,7 @@
 import Block from '../../utils/Block';
 import template from './link.hbs';
 import render from '../../utils/render';
+import './link.scss';
 
 interface LinkProps {
   onClick?: () => void;

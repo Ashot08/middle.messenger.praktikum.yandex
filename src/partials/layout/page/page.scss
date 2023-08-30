@@ -1,8 +1,0 @@
-.page{
-  @include flexbox(center, center, nowrap, column);
-
-  min-height: calc(100vh - 50px);
-  overflow-y: auto;
-  padding: 60px 0;
-}
-

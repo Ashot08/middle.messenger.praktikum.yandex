@@ -1,3 +1,5 @@
+@import "../../../styles/mixins";
+
 .page{
   @include flexbox(center, center, nowrap, column);
 

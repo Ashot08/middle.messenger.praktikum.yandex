@@ -1,5 +1,8 @@
 import Block from '../../utils/Block';
 import template from './signup.hbs';
+import { isValid } from '../../helpers/validate';
+import { validation } from '../../constants/validation';
+import './signup.scss';
 
 export default class SignupPage extends Block {
   constructor() {
@@ -45,13 +48,31 @@ export default class SignupPage extends Block {
           placeholder: 'Пароль',
           required: 'required',
         },
-        {
-          type: 'password',
-          name: 'password_again',
-          placeholder: 'Пароль (ещё раз)',
-          required: 'required',
-        },
       ],
+      onSubmit: (e: any) => {
+        e.preventDefault();
+        const formData: any = new FormData(e.target);
+        let oldProps:any = {};
+        for (const pair of formData.entries()) {
+          const isInputValid = isValid(pair[0], pair[1]);
+          oldProps = { ...this.props };
+          for (const field of oldProps.fields) {
+            if (!isInputValid && field.name === pair[0]) {
+              field.error = validation[pair[0]].message;
+              field.value = pair[1];
+            }
+            if (isInputValid && field.name === pair[0]) {
+              field.error = '';
+              field.value = pair[1];
+            }
+          }
+        }
+        console.log(oldProps.fields.map((f: any) => `${f.name}: ${f.value}`));
+        this.setProps({
+          ...oldProps,
+          fields: [...oldProps.fields],
+        });
+      },
     });
   }
 
