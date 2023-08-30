@@ -1,13 +1,12 @@
 import Block from '../../utils/Block';
-import template from './500.hbs';
-import './500.scss';
+import template from './404.hbs';
+import './404.scss';
 
-export default class Error500Page extends Block {
-
+export default class Error404Page extends Block {
   constructor() {
     super({
-      code: 500,
-      description: 'Мы уже фиксим',
+      code: 404,
+      description: 'Не туда попали',
       url: '/',
       text: 'Назад к чатам',
     });

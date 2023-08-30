@@ -5,7 +5,7 @@
 .dialog{
   @include flexbox(center, flex-start, wrap);
 
-  padding: 12px 0;
+  padding: 12px 10px;
   height: 70px;
   font-weight: 500;
   border-bottom: 1px solid #EAEAEA;
@@ -80,5 +80,8 @@
     color: #fff;
     margin-bottom: 2px;
   }
+}
+.dialog_active{
+  background-color: #E4EDFD;
 }
 
