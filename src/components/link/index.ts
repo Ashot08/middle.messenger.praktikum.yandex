@@ -1,8 +1,10 @@
 import Block from '../../utils/Block';
 import template from './link.hbs';
+import render from '../../utils/render';
 
 interface LinkProps {
   onClick?: () => void;
+  withRoute?: boolean;
   events: {
     click: () => void;
   };
@@ -12,7 +14,7 @@ export default class Link extends Block {
     super({
       ...props,
       events: {
-        click: props.onClick,
+        click: props.withRoute ? redirectToRoute : props.onClick,
       },
     });
   }
@@ -21,3 +23,4 @@ export default class Link extends Block {
     return this.compile(template, this.props);
   }
 }
+const redirectToRoute = (e: any) => { e.preventDefault(); render(e.target.getAttribute('href')); };

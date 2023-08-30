@@ -1,8 +1,7 @@
 import Block from '../../utils/Block';
-import template from './home.hbs';
+import template from './profile-form.hbs';
 
-export default class HomePage extends Block {
-
+export default class ProfileForm extends Block {
   render() {
     return this.compile(template, this.props);
   }

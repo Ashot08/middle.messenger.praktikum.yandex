@@ -13,9 +13,9 @@
     {{/each}}
 
     <div class="auth-form__submit">
-        {{{ Button label='Вход' class='button_full-width'}}}
+        {{{ Button label=buttonLabel class='button_full-width'}}}
         <div>
-            {{{Link url=linkUrl text=linkText}}}
+            {{{Link withRoute=true url=linkUrl text=linkText}}}
         </div>
     </div>
 

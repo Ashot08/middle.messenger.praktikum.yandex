@@ -106,7 +106,7 @@ export default class Block {
   }
 
   private _render(): void {
-    const fragment = this.render();
+    const fragment: DocumentFragment = this.render();
     const newElement = fragment.firstElementChild as HTMLElement;
     if (this._element) {
       this._element.replaceWith(newElement);

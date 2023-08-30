@@ -7,6 +7,7 @@ export default class LoginPage extends Block {
       title: 'Вход',
       linkText: 'Нет аккаунта?',
       linkUrl: 'signup',
+      buttonLabel: 'Войти',
       fields: [
         {
           type: 'text',
