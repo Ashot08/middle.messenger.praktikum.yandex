@@ -1,4 +1,6 @@
 @use "sass:color";
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
 
 .dialog{
   @include flexbox(center, flex-start, wrap);

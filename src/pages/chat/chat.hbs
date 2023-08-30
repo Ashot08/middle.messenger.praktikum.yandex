@@ -1,0 +1,33 @@
+{{#Base}}
+
+<div id="chat" class="chat-page">
+
+    <div class="chat">
+        <aside class="chat__aside">
+            <div class="chat__search">
+                {{{DialogSearch}}}
+            </div>
+            <div class="chat__dialogs">
+
+                {{#each dialogs}}
+                    {{{Dialog
+                            title=title
+                            description=description
+                            avatarUrl=avatarUrl
+                            unreadMessagesCount=unreadMessagesCount
+                            lastMessageTime=lastMessageTime
+                    }}}
+                {{/each}}
+
+            </div>
+        </aside>
+        <div class="chat__body">
+            {{{DialogBody}}}
+        </div>
+    </div>
+
+</div>
+
+{{/Base}}
+
+

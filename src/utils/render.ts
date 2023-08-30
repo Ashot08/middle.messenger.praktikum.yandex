@@ -2,12 +2,14 @@ import HomePage from '../pages/home';
 import LoginPage from '../pages/login';
 import SignupPage from '../pages/signup';
 import ProfilePage from '../pages/profile';
+import ChatPage from '../pages/chat';
 
 const ROUTES = {
   home: HomePage,
   login: LoginPage,
   signup: SignupPage,
   profile: ProfilePage,
+  chat: ChatPage,
 };
 
 export default function render(name: keyof typeof ROUTES) {
