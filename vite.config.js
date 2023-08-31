@@ -4,7 +4,6 @@ import { resolve } from 'path';
 import checker from "vite-plugin-checker";
 import vitePluginHandlebarsPrecompile from "./vite-plugin-handelbars-precompile.js";
 
-
 export default defineConfig({
     root: resolve(__dirname, 'src'),
     build: {

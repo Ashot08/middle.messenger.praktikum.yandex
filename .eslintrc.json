@@ -18,6 +18,8 @@
     "no-use-before-define": 0,
     "import/prefer-default-export": 0,
     "no-restricted-syntax": 0,
-    "prefer-destructuring": 0
+    "prefer-destructuring": 0,
+    "no-shadow": 0,
+    "prefer-promise-reject-errors": 0
   }
 }
