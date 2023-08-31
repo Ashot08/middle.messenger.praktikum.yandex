@@ -1,10 +1,6 @@
 import Block from '../../utils/Block';
 import template from './profile.hbs';
-import ProfileForm from '../../components/profile-form';
-import registerComponent from '../../utils/registerComponent';
 import './profile.scss';
-
-registerComponent('ProfileForm', ProfileForm);
 
 export default class ProfilePage extends Block {
   constructor() {

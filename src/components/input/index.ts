@@ -3,6 +3,7 @@ import template from './input.hbs';
 import { isValid } from '../../helpers/validate';
 import { validation } from '../../constants/validation';
 import './input.scss';
+import searchIcon from './img/search-icon.svg';
 
 interface IInput {
   name: string;
@@ -10,6 +11,7 @@ interface IInput {
   type: string;
   class: string;
   onFocusOut?: () => void;
+  searchIcon?: string;
   events?: {
     focusout?: (e: Event) => void;
   };
@@ -19,6 +21,7 @@ export default class Input extends Block {
   constructor(props: IInput) {
     super({
       ...props,
+      searchIcon,
       events: {
         focusout: (e: any) => {
           const isInputValid: boolean = isValid(e.target.name, e.target.value);

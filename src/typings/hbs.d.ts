@@ -10,3 +10,9 @@ declare module '*.svg' {
     const template: TemplateDelegate;
     export default template;
 }
+declare module '*.png' {
+    import { TemplateDelegate } from 'handlebars';
+
+    const template: TemplateDelegate;
+    export default template;
+}

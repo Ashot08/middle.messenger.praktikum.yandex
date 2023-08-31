@@ -4,7 +4,7 @@ import Handlebars from 'handlebars';
 export default function vitePluginHandlebarsPrecompile(): PluginOption {
   return {
     name: 'vite-plugin-handlebars-precompile',
-    transform(code: any, id: any): any {
+    transform(code, id) {
       if (id.endsWith('.hbs') || id.endsWith('.handlebars')) {
         return {
           code: `
@@ -14,7 +14,7 @@ export default function vitePluginHandlebarsPrecompile(): PluginOption {
                     `,
         };
       }
-      return '';
+      return null;
     },
   };
 }

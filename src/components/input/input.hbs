@@ -8,7 +8,7 @@
     <input class="text-input" type="{{type}}" name="{{name}}" id="{{name}}_input" placeholder="{{placeholder}}" {{required}} value="{{value}}">
     {{#if isSearch}}
         <label class="label label_with-search-icon" for="{{name}}_input">
-            <img src="/components/input/img/search-icon.svg" alt="Search icon">
+            <img src="{{searchIcon}}" alt="Search icon">
         </label>
     {{else}}
         <label class="label label_animated" for="{{name}}_input">{{placeholder}}</label>
