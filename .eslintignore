@@ -1,4 +1,4 @@
-vite.config.js
+vite.config.ts
 server.js
 src/dist
 node_modules
