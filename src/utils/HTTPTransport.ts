@@ -11,34 +11,29 @@ type IOptionType = {
   headers?: any;
 };
 
-function queryStringify(data: Record<string, any>) {
-  return Object.entries(data)
-    .map(([key, value]) => `${key}=${value}`)
-    .join('&');
-}
-
 export class HTTPTransport {
-  get(url: string, options: IOptionType = { method: METHODS.GET }): Promise<XMLHttpRequest> {
-    if (options.data) {
-      url += `?${queryStringify(options.data)}`;
-      options.data = {};
-    }
-    return this.request(url, {
-      ...options,
-      method: METHODS.GET,
-    });
+  static API_URL = 'https://ya-praktikum.tech/api/v2';
+
+  protected endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
   }
 
-  post(url: string, options: IOptionType = { method: METHODS.POST }): Promise<XMLHttpRequest> {
-    return this.request(url, options);
+  get(url: string): Promise<XMLHttpRequest> {
+    return this.request(this.endpoint + url);
   }
 
-  put(url: string, options: IOptionType = { method: METHODS.PUT }): Promise<XMLHttpRequest> {
-    return this.request(url, options);
+  post(url: string, options?: unknown): Promise<XMLHttpRequest> {
+    return this.request(this.endpoint + url, { method: METHODS.POST, data: options });
   }
 
-  delete(url: string, options: IOptionType = { method: METHODS.DELETE }): Promise<XMLHttpRequest> {
-    return this.request(url, options);
+  put(url: string, options: unknown): Promise<XMLHttpRequest> {
+    return this.request(this.endpoint + url, { method: METHODS.PUT, data: options });
+  }
+
+  delete(url: string, options: unknown): Promise<XMLHttpRequest> {
+    return this.request(this.endpoint + url, { method: METHODS.DELETE, data: options });
   }
 
   request(url: string, options: IOptionType = { method: METHODS.GET }): Promise<XMLHttpRequest> {
