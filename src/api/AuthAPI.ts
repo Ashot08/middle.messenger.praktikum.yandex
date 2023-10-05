@@ -28,7 +28,7 @@ export default class AuthAPI extends BaseAPI {
   }
 
   logOut(): Promise<unknown> {
-    return this.http.post('/logout', data);
+    return this.http.post('/logout');
   }
 
   read(): Promise<unknown> {
