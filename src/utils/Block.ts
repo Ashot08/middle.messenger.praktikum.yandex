@@ -21,7 +21,7 @@ export default class Block {
 
   protected refs: Record<string, Block> = {};
 
-  constructor(propsWithChildren: object = {}) {
+  constructor(propsWithChildren: any = {}) {
     const {
       props,
       children,

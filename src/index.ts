@@ -10,11 +10,11 @@ import ProfileForm from './components/profile-form';
 import Router from './utils/Router';
 import HomePage from './pages/home';
 import LoginPage from './pages/login';
-import SignupPage from './pages/signup';
 import ProfilePage from './pages/profile';
 import ChatPage from './pages/chat';
 import Error404Page from './pages/404';
 import Error500Page from './pages/500';
+import SignupPage from './pages/signup';
 
 registerComponent('Input', Input);
 registerComponent('Button', Button);
