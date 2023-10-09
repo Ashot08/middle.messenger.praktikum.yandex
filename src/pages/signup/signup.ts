@@ -3,6 +3,7 @@ import template from './signup.hbs';
 import { isValid } from '../../helpers/validate';
 import { validation } from '../../constants/validation';
 import './signup.scss';
+import AuthController, { ControllerSignUpData } from '../../controllers/AuthController';
 
 export default class SignupPage extends Block {
   constructor() {
@@ -67,7 +68,25 @@ export default class SignupPage extends Block {
             }
           }
         }
-        console.log(oldProps.fields.map((f: any) => `${f.name}: ${f.value}`));
+        // console.log(oldProps.fields.map((f: any) => `${f.name}: ${f.value}`));
+
+        const signUpData: ControllerSignUpData = {
+          first_name: '',
+          second_name: '',
+          login: '',
+          email: '',
+          password: '',
+          phone: '',
+          confirm_password: '',
+        };
+        oldProps.fields.forEach((f: any) => {
+          signUpData[f.name as keyof ControllerSignUpData] = f.value;
+        });
+
+        console.log(signUpData);
+
+        AuthController.signUp(signUpData as ControllerSignUpData).then((res) => console.log(res));
+
         this.setProps({
           ...oldProps,
           fields: [...oldProps.fields],

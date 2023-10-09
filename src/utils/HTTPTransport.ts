@@ -1,17 +1,17 @@
-enum METHODS {
-  GET = 'GET',
-  PUT = 'PUT',
-  POST = 'POST',
-  DELETE = 'DELETE',
+export enum Method {
+  Get = 'Get',
+  Post = 'Post',
+  Put = 'Put',
+  Patch = 'Patch',
+  Delete = 'Delete'
 }
 
-type IOptionType = {
-  method?: METHODS;
+type Options = {
+  method: Method;
   data?: any;
-  headers?: any;
 };
 
-export class HTTPTransport {
+export default class HTTPTransport {
   static API_URL = 'https://ya-praktikum.tech/api/v2';
 
   protected endpoint: string;
@@ -20,58 +20,68 @@ export class HTTPTransport {
     this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
   }
 
-  get(url: string): Promise<XMLHttpRequest> {
-    return this.request(this.endpoint + url);
+  public get<Response>(path = '/'): Promise<Response> {
+    return this.request<Response>(this.endpoint + path);
   }
 
-  post(url: string, options?: unknown): Promise<XMLHttpRequest> {
-    return this.request(this.endpoint + url, { method: METHODS.POST, data: options });
-  }
-
-  put(url: string, options: unknown): Promise<XMLHttpRequest> {
-    return this.request(this.endpoint + url, { method: METHODS.PUT, data: options });
-  }
-
-  delete(url: string, options: unknown): Promise<XMLHttpRequest> {
-    return this.request(this.endpoint + url, { method: METHODS.DELETE, data: options });
-  }
-
-  request(url: string, options: IOptionType = { method: METHODS.GET }): Promise<XMLHttpRequest> {
-    const {
-      headers = {},
-      method,
+  public post<Response = void>(path: string, data?: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Post,
       data,
-    } = options;
+    });
+  }
+
+  public put<Response = void>(path: string, data: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Put,
+      data,
+    });
+  }
+
+  public patch<Response = void>(path: string, data: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Patch,
+      data,
+    });
+  }
+
+  public delete<Response>(path: string): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Delete,
+    });
+  }
+
+  private request<Response>(url: string, options: Options = { method: Method.Get }):
+    Promise<Response> {
+    const { method, data } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-
-      if (!method) {
-        reject('No method');
-        return;
-      }
-
       xhr.open(method, url);
-      xhr.withCredentials = true;
 
-      xhr.onload = function () {
-        console.log(xhr);
-        resolve(xhr);
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status < 400) {
+            resolve(xhr.response);
+          } else {
+            reject(xhr.response);
+          }
+        }
       };
 
-      Object.keys(headers)
-        .forEach((key) => {
-          xhr.setRequestHeader(key, headers[key]);
-        });
+      xhr.onabort = () => reject({ reason: 'abort' });
+      xhr.onerror = () => reject({ reason: 'network error' });
+      xhr.ontimeout = () => reject({ reason: 'timeout' });
 
-      xhr.onabort = reject;
-      xhr.onerror = reject;
-      xhr.ontimeout = reject;
+      xhr.setRequestHeader('Content-Type', 'application/json');
 
-      if (method === METHODS.GET || !data) {
+      xhr.withCredentials = true;
+      xhr.responseType = 'json';
+
+      if (method === Method.Get || !data) {
         xhr.send();
       } else {
-        xhr.send(data);
+        xhr.send(JSON.stringify(data));
       }
     });
   }

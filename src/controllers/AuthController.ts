@@ -14,11 +14,12 @@ class AuthController {
   }
 
   async signUp(data: ControllerSignUpData) {
-    if (data.confirm_password !== data.password) {
-      store.set('currentUser.error', 'Confirm password and password are not equal');
-      return;
-    }
+    // if (data.confirm_password !== data.password) {
+    //   store.set('currentUser.error', 'Confirm password and password are not equal');
+    //   return;
+    // }
 
+    data.confirm_password = data.password;
     const { ...signUpData } = data;
 
     store.set('currentUser.isLoading', true);
