@@ -24,8 +24,9 @@ registerComponent('Page', Page);
 registerComponent('AuthForm', AuthForm);
 registerComponent('Error', Error);
 registerComponent('ProfileForm', ProfileForm);
-registerComponent('HomePage', HomePage);
-registerComponent('LoginPage', LoginPage);
+// registerComponent('HomePage', HomePage);
+// registerComponent('LoginPage', LoginPage);
+// registerComponent('SignupPage', SignupPage);
 
 window.addEventListener('DOMContentLoaded', () => {
   const router = new Router('#app');

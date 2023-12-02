@@ -9,7 +9,7 @@ export default class SignupPage extends Block {
   constructor() {
     super({
       title: 'Регистрация',
-      linkUrl: 'login',
+      linkUrl: '/login',
       linkText: 'Войти',
       buttonLabel: 'Регистрация',
       fields: [
