@@ -61,8 +61,11 @@ class AuthController {
   }
 
   async fetchUser() {
-    const user = await this.api.read();
-    store.set('currentUser', user);
+    const user: any = await this.api.read();
+    if (user?.id) {
+      store.set('currentUser', user);
+    }
+    return user;
   }
 }
 export default new AuthController();

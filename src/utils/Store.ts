@@ -17,8 +17,25 @@ interface User {
   'avatar': string;
 }
 
+interface LoginPage {
+  errors?: string [];
+}
+
+interface HomePage {
+  errors?: string [];
+}
+
+interface ChatPage {
+  messages?: Record<string, any>;
+  chats?: Record<string, any>;
+}
+
 interface StoreData {
   currentUser?: User;
+  profile?: User;
+  loginPage?: LoginPage;
+  homePage?: HomePage;
+  chatPage?: ChatPage;
 }
 
 class Store extends EventBus {

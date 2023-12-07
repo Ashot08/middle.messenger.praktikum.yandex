@@ -15,6 +15,7 @@ import ChatPage from './pages/chat';
 import Error404Page from './pages/404';
 import Error500Page from './pages/500';
 import SignupPage from './pages/signup';
+import AuthController from './controllers/AuthController';
 
 registerComponent('Input', Input);
 registerComponent('Button', Button);
@@ -28,7 +29,7 @@ registerComponent('ProfileForm', ProfileForm);
 // registerComponent('LoginPage', LoginPage);
 // registerComponent('SignupPage', SignupPage);
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
   const router = new Router('#app');
   router.use('/', HomePage);
   router.use('/login', LoginPage);
@@ -38,4 +39,14 @@ window.addEventListener('DOMContentLoaded', () => {
   router.use('/error404', Error404Page);
   router.use('/error500', Error500Page);
   router.start();
+
+  try {
+    await AuthController.fetchUser();
+    if (window.location.pathname === '/login' || window.location.pathname === '/signup') {
+      router.go('/profile');
+    }
+  } catch (e: any) {
+    router.go('/login');
+    throw new Error(e);
+  }
 });
