@@ -6,6 +6,8 @@ class Router {
 
   private routes: Route[] = [];
 
+  private redirects: Record<string, string> = {};
+
   private history = window.history;
 
   private _currentRoute: Route | null = null;
@@ -18,6 +20,7 @@ class Router {
     }
 
     this.routes = [];
+    this.redirects = {};
     this.history = window.history;
     this._currentRoute = null;
     this._rootQuery = rootQuery;
@@ -29,6 +32,10 @@ class Router {
     const route = new Route(pathname, block, { rootQuery: this._rootQuery });
     this.routes.push(route);
     return this;
+  }
+
+  useRedirect(from: string, to: string) {
+    this.redirects[from] = to;
   }
 
   start() {
@@ -54,6 +61,10 @@ class Router {
   }
 
   go(pathname: string) {
+    if (pathname in this.redirects) {
+      pathname = this.redirects[pathname];
+    }
+    console.log(pathname, this.redirects);
     this.history.pushState({}, '', pathname);
     this._onRoute(pathname);
   }
@@ -68,6 +79,10 @@ class Router {
 
   getRoute(pathname: string) {
     return this.routes.find((route: Route) => route.match(pathname));
+  }
+
+  getRedirects() {
+    return this.redirects;
   }
 }
 

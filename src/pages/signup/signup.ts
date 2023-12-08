@@ -83,9 +83,8 @@ export default class SignupPage extends Block {
           signUpData[f.name as keyof ControllerSignUpData] = f.value;
         });
 
-        console.log(signUpData);
-
-        AuthController.signUp(signUpData as ControllerSignUpData).then((res) => console.log(res));
+        AuthController.signUp(signUpData as ControllerSignUpData)
+          .then((res) => console.log(res));
 
         this.setProps({
           ...oldProps,
