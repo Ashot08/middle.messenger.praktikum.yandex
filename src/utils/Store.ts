@@ -19,10 +19,21 @@ interface User {
 
 interface LoginPage {
   errors?: string [];
+  response?: string;
+}
+
+interface SignUpPage {
+  errors?: string [];
+  response?: string;
 }
 
 interface HomePage {
   errors?: string [];
+}
+
+interface ProfilePage {
+  currentUser?: User,
+  fields?: Record<number, string>
 }
 
 interface ChatPage {
@@ -32,8 +43,9 @@ interface ChatPage {
 
 interface StoreData {
   currentUser?: User;
-  profile?: User;
+  profile?: ProfilePage;
   loginPage?: LoginPage;
+  signUpPage?: SignUpPage;
   homePage?: HomePage;
   chatPage?: ChatPage;
 }

@@ -16,6 +16,7 @@ import Error404Page from './pages/404';
 import Error500Page from './pages/500';
 import SignupPage from './pages/signup';
 import AuthController from './controllers/AuthController';
+import { Routes } from './constants/routes';
 
 registerComponent('Input', Input);
 registerComponent('Button', Button);
@@ -31,24 +32,25 @@ registerComponent('ProfileForm', ProfileForm);
 
 window.addEventListener('DOMContentLoaded', async () => {
   const router = new Router('#app');
-  router.use('/', HomePage);
-  router.use('/login', LoginPage);
-  router.use('/signup', SignupPage);
-  router.use('/profile', ProfilePage);
-  router.use('/chat', ChatPage);
-  router.use('/error404', Error404Page);
-  router.use('/error500', Error500Page);
+  router.use(Routes.Index, HomePage);
+  router.use(Routes.Login, LoginPage);
+  router.use(Routes.Register, SignupPage);
+  router.use(Routes.ProfilePage, ProfilePage);
+  router.use(Routes.Chat, ChatPage);
+  router.use(Routes.Error404, Error404Page);
+  router.use(Routes.Error500, Error500Page);
   router.start();
 
   try {
-    await AuthController.fetchUser();
-    router.useRedirect('/login', '/profile');
-    router.useRedirect('/signup', '/profile');
+    const user = await AuthController.fetchUser();
+    router.useRedirect(Routes.Login, Routes.ProfilePage);
+    router.useRedirect(Routes.Register, Routes.ProfilePage);
+    console.log(user);
     if (window.location.pathname === '/login' || window.location.pathname === '/signup') {
-      router.go('/profile');
+      router.go(Routes.ProfilePage);
     }
   } catch (e: any) {
-    router.go('/login');
-    throw new Error(e);
+    console.log(e);
+    router.go(Routes.Login);
   }
 });

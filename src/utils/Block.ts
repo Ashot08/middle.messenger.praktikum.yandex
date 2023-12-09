@@ -113,13 +113,12 @@ export default class Block {
     return true;
   }
 
-  setProps = (nextProps: any): void => {
+  setProps(nextProps: any): void {
     if (!nextProps) {
       return;
     }
-
     Object.assign(this.props, nextProps);
-  };
+  }
 
   get element(): HTMLElement | null {
     return this._element;

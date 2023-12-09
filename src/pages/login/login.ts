@@ -3,13 +3,15 @@ import template from './login.hbs';
 import { isValid } from '../../helpers/validate';
 import './login.scss';
 import { validation } from '../../constants/validation';
+import AuthController from '../../controllers/AuthController';
+import { SignInData } from '../../api/AuthAPI';
 
 export default class LoginPage extends Block {
   constructor() {
     super({
       title: 'Вход',
       linkText: 'Нет аккаунта?',
-      linkUrl: '/signup',
+      linkUrl: '/sign-up',
       buttonLabel: 'Войти',
       fields: [
         {
@@ -25,8 +27,8 @@ export default class LoginPage extends Block {
           required: 'required',
         },
       ],
+      response: '',
       onSubmit: (e: any) => {
-        console.log(this.props);
         e.preventDefault();
         const formData: any = new FormData(e.target);
         let oldProps:any = {};
@@ -44,7 +46,18 @@ export default class LoginPage extends Block {
             }
           }
         }
-        console.log(oldProps.fields.map((f: any) => `${f.name}: ${f.value}`));
+
+        const loginData: SignInData = {
+          login: '',
+          password: '',
+        };
+        oldProps.fields.forEach((f: any) => {
+          loginData[f.name as keyof SignInData] = f.value;
+        });
+
+        AuthController.signIn(loginData as SignInData)
+          .then((res) => console.log(res));
+
         // this.setProps({
         //   ...oldProps,
         //   fields: [...oldProps.fields],

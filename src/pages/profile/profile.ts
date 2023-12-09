@@ -1,60 +1,28 @@
 import Block from '../../utils/Block';
 import template from './profile.hbs';
 import './profile.scss';
+import AuthController from '../../controllers/AuthController';
+import store from '../../utils/Store';
 
 export default class ProfilePage extends Block {
   constructor() {
     super({
       title: 'Регистрация',
-      userName: 'Иван',
-      fields: [
-        {
-          type: 'email',
-          name: 'email',
-          placeholder: 'Почта',
-          required: 'required',
-          value: 'oleg@yandex.ru',
-        },
-        {
-          type: 'text',
-          name: 'login',
-          placeholder: 'Логин',
-          required: 'required',
-          value: 'oleg',
-        },
-        {
-          type: 'text',
-          name: 'first_name',
-          placeholder: 'Имя',
-          required: 'required',
-          value: 'Oleg',
-        },
-        {
-          type: 'text',
-          name: 'second_name',
-          placeholder: 'Фамилия',
-          required: 'required',
-          value: 'Panov',
-        },
-        {
-          type: 'text',
-          name: 'display_name',
-          placeholder: 'Имя в чате',
-          required: 'required',
-          value: 'olegus334',
-        },
-        {
-          type: 'text',
-          name: 'phone',
-          placeholder: 'Телефон',
-          required: 'required',
-          value: '8-913-253-33-22',
-        },
-      ],
+      userName: '',
+      fields: [],
+      async onLogout() {
+        try {
+          await AuthController.LogOut();
+        } catch (e) {
+          throw new Error('logout error');
+        }
+      },
     });
   }
 
   render() {
+    console.log('PROPS', this.props);
+    console.log('STATE', store.getState());
     return this.compile(template, this.props);
   }
 }

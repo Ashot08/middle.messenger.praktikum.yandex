@@ -50,6 +50,7 @@ export default class SignupPage extends Block {
           required: 'required',
         },
       ],
+      response: '',
       onSubmit: (e: any) => {
         e.preventDefault();
         const formData: any = new FormData(e.target);

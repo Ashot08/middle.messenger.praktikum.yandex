@@ -38,6 +38,10 @@ class Router {
     this.redirects[from] = to;
   }
 
+  removeRedirect(path: string) {
+    delete this.redirects[path];
+  }
+
   start() {
     window.onpopstate = () => {
       this._onRoute(window.location.pathname);
@@ -64,7 +68,6 @@ class Router {
     if (pathname in this.redirects) {
       pathname = this.redirects[pathname];
     }
-    console.log(pathname, this.redirects);
     this.history.pushState({}, '', pathname);
     this._onRoute(pathname);
   }
