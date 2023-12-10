@@ -2,7 +2,6 @@ import Block from '../../utils/Block';
 import template from './profile.hbs';
 import './profile.scss';
 import AuthController from '../../controllers/AuthController';
-import store from '../../utils/Store';
 
 export default class ProfilePage extends Block {
   constructor() {
@@ -21,8 +20,6 @@ export default class ProfilePage extends Block {
   }
 
   render() {
-    console.log('PROPS', this.props);
-    console.log('STATE', store.getState());
     return this.compile(template, this.props);
   }
 }

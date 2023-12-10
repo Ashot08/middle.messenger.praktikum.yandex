@@ -42,10 +42,10 @@ window.addEventListener('DOMContentLoaded', async () => {
   router.start();
 
   try {
-    const user = await AuthController.fetchUser();
+    await AuthController.fetchUser();
     router.useRedirect(Routes.Login, Routes.ProfilePage);
     router.useRedirect(Routes.Register, Routes.ProfilePage);
-    console.log(user);
+    // console.log(user);
     if (window.location.pathname === '/login' || window.location.pathname === '/signup') {
       router.go(Routes.ProfilePage);
     }
