@@ -23,9 +23,6 @@ export default class ProfilePage extends Block {
         store.set('profile.formClass', 'loading');
         console.log(this);
       },
-      onChangeInput() {
-        console.log('this');
-      },
     });
   }
 
