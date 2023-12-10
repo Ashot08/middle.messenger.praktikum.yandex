@@ -3,9 +3,8 @@
 <div id="profile" class="profile-page">
 
     {{#Page}}
-        {{{ProfileForm user=currentUser name=currentUser.first_name fields=fields}}}
+        {{{ProfileForm onChangeInput='onChangeInput' formClass=formClass onSubmit=onUpdate user=currentUser name=currentUser.first_name fields=fields}}}
         <div class="profile-page__controls">
-            {{{ Link url='#' text='Изменить данные'}}}
             {{{ Link url='#' text='Изменить пароль'}}}
             {{{ Button onClick=onLogout label='Выйти'}}}
         </div>

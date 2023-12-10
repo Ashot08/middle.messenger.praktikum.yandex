@@ -12,13 +12,16 @@ interface IInput {
   class: string;
   onFocusOut?: () => void;
   searchIcon?: string;
+  onChange?: (e: Event) => void;
   events?: {
     focusout?: (e: Event) => void;
+    change?: (e: Event) => void;
   };
 }
 
 export default class Input extends Block {
   constructor(props: IInput) {
+    console.log(props);
     super({
       ...props,
       searchIcon,
@@ -39,6 +42,7 @@ export default class Input extends Block {
             });
           }
         },
+        change: props.onChange,
       },
     });
   }

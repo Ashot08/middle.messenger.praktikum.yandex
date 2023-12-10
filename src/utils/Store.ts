@@ -78,7 +78,6 @@ export const withStore = (mapStateToProps: (state: StoreData) =>
       this.setProps({
         ...state,
       });
-      console.log('THIS', this);
       store.on(StoreEvents.Updated, () => {
         const newState = mapStateToProps(store.getState());
         if (!isEqual(state, newState)) {

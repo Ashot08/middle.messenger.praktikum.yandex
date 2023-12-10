@@ -5,7 +5,14 @@ import './profile-form.scss';
 
 export default class ProfileForm extends Block {
   constructor(props: any) {
-    super({ ...props, defaultAvatar });
+    super({
+      onChangeInput: 'null',
+      ...props,
+      defaultAvatar,
+      events: {
+        submit: props.onSubmit,
+      },
+    });
   }
 
   render() {

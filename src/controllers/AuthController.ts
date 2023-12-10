@@ -72,11 +72,9 @@ class AuthController {
 
   async fetchUser() {
     const user: any = await this.api.read();
-    console.log('USER', user);
     if (user?.id) {
       store.set('profile.currentUser', user);
       store.set('profile.fields', profileFields.map((f) => ({ ...f, value: user[f.name] })));
-      console.log('OK', store.getState());
     }
     return user;
   }
