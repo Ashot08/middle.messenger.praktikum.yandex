@@ -12,6 +12,10 @@
       border-bottom: none;
     }
   }
+
+  &.loading {
+    opacity: 0.2;
+  }
 }
 
 .profile-form__avatar{

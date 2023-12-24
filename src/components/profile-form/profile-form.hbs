@@ -20,7 +20,13 @@
             {{{Input type=type required=required name=name placeholder=placeholder class='profile-input' value=value}}}
         </div>
     {{/each}}
-    {{{ Button label='Изменить данные'}}}
+    {{{ Button submitDisabled=submitDisabled label='Изменить данные'}}}
+
+    {{#if response}}
+        <div class="auth-form__response">
+            {{response}}
+        </div>
+    {{/if}}
 </form>
 
 

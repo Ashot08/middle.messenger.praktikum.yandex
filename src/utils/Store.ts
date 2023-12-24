@@ -36,6 +36,11 @@ interface ProfilePage {
   fields?: Record<number, string>
 }
 
+interface ChangePasswordPage {
+  currentUser?: User,
+  fields?: Record<number, string>
+}
+
 interface ChatPage {
   messages?: Record<string, any>;
   chats?: Record<string, any>;
@@ -44,6 +49,7 @@ interface ChatPage {
 interface StoreData {
   currentUser?: User;
   profile?: ProfilePage;
+  changePassword?: ChangePasswordPage;
   loginPage?: LoginPage;
   signUpPage?: SignUpPage;
   homePage?: HomePage;

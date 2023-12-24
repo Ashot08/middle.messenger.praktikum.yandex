@@ -11,6 +11,7 @@ import Router from './utils/Router';
 import HomePage from './pages/home';
 import LoginPage from './pages/login';
 import ProfilePage from './pages/profile';
+import ChangePassword from './pages/profile/changePassword';
 import ChatPage from './pages/chat';
 import Error404Page from './pages/404';
 import Error500Page from './pages/500';
@@ -36,6 +37,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   router.use(Routes.Login, LoginPage);
   router.use(Routes.Register, SignupPage);
   router.use(Routes.ProfilePage, ProfilePage);
+  router.use(Routes.ChangePasswordPage, ChangePassword);
   router.use(Routes.Chat, ChatPage);
   router.use(Routes.Error404, Error404Page);
   router.use(Routes.Error500, Error500Page);
