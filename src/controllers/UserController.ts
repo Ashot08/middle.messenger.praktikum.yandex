@@ -31,12 +31,23 @@ class UserController {
     try {
       response = await this.api.updatePassword(data);
     } catch (e: any) {
-      store.set('profilePage.response', e.reason);
+      store.set('changePassword.response', e.reason);
+      return e.reason;
     }
+    store.set('changePassword.response', 'Пароль успешно заменен');
+    return response;
+  }
 
-    if (response.reason) {
-      store.set('currentUser.error', response.reason);
+  async updateAvatar(data: any) {
+    let response: any;
+
+    try {
+      response = await this.api.updateAvatar(data);
+    } catch (e: any) {
+      store.set('profilePage.response', e.reason);
+      return e.reason;
     }
+    store.set('profilePage.response', 'Аватар успешно заменен');
     return response;
   }
 }

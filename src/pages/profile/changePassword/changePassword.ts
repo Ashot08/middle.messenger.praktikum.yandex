@@ -1,7 +1,7 @@
 import Block from '../../../utils/Block';
 import template from './changePassword.hbs';
 import './changePassword.scss';
-import store from '../../../utils/Store';
+import UserController from '../../../controllers/UserController';
 
 export default class ChangePassword extends Block {
   constructor() {
@@ -30,15 +30,15 @@ export default class ChangePassword extends Block {
 
       async changePassword(e: any) {
         e.preventDefault();
-        console.log('SUB');
         const oldPassword = (<HTMLInputElement>document.querySelector('[name="oldPassword"]'))
           .value;
         const newPassword = (<HTMLInputElement>document.querySelector('[name="newPassword"]'))
           .value;
 
-        if (oldPassword !== newPassword) {
-          store.set('changePassword.response', 'Пароли не совпадают');
-        }
+        await UserController.updatePassword({
+          oldPassword,
+          newPassword,
+        });
       },
     });
   }

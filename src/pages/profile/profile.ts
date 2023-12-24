@@ -5,16 +5,19 @@ import AuthController from '../../controllers/AuthController';
 import store from '../../utils/Store';
 import { validate } from '../../helpers/validate';
 import userController from '../../controllers/UserController';
+import defaultAvatar from './img/default_avatar.png';
 
 export default class ProfilePage extends Block {
   constructor() {
     super({
       title: 'Профиль',
       userName: '',
+      currentUser: {},
       fields: [],
       formClass: '',
       submitDisabled: false,
       response: '',
+      defaultAvatar,
       async onLogout() {
         try {
           await AuthController.LogOut();
@@ -56,15 +59,18 @@ export default class ProfilePage extends Block {
         }
       },
 
-      async changePassword(e: any) {
+      async changeAvatar(e: any) {
         e.preventDefault();
-        const oldPassword = (<HTMLInputElement>document.querySelector('[name="oldPassword"]'))
-          .value;
-        const newPassword = (<HTMLInputElement>document.querySelector('[name="newPassword"]'))
-          .value;
-
-        if (oldPassword !== newPassword) {
-          store.set('profile.response', 'Пароли не совпадают');
+        const avatarInput = (<HTMLInputElement>document.querySelector('[type="file"]'));
+        const file = avatarInput.files ? avatarInput.files[0] : '';
+        const formData: FormData = new FormData();
+        formData.append('avatar', file);
+        const result = await userController.updateAvatar(formData);
+        if (!result.reason) {
+          await AuthController.fetchUser();
+          store.set('profile.response', 'Аватар пользователя обновлен');
+        } else {
+          store.set('profile.response', result.reason);
         }
       },
     });

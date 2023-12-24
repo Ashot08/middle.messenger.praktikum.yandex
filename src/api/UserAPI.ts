@@ -30,5 +30,10 @@ export default class UserAPI extends BaseAPI {
   updatePassword(data: PasswordData): Promise<unknown> {
     return this.http.put('/password', data);
   }
+
+  updateAvatar(data: any): Promise<unknown> {
+    return this.http.put('/profile/avatar', data, 'multipart/form-data');
+  }
+
   delete = undefined;
 }

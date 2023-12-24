@@ -31,11 +31,15 @@ export default class HTTPTransport {
     });
   }
 
-  public put<Response = void>(path: string, data: unknown): Promise<Response> {
+  public put<Response = void>(
+    path: string,
+    data: unknown,
+    type = 'application/json',
+  ): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
       method: Method.Put,
       data,
-    });
+    }, type);
   }
 
   public patch<Response = void>(path: string, data: unknown): Promise<Response> {
@@ -51,9 +55,16 @@ export default class HTTPTransport {
     });
   }
 
-  private request<Response>(url: string, options: Options = { method: Method.Get }):
+  private request<Response>(
+    url: string,
+    options: Options = { method: Method.Get },
+    type = 'application/json',
+  ):
     Promise<Response> {
-    const { method, data } = options;
+    const {
+      method,
+      data,
+    } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -72,16 +83,18 @@ export default class HTTPTransport {
       xhr.onabort = () => reject({ reason: 'abort' });
       xhr.onerror = () => reject({ reason: 'network error' });
       xhr.ontimeout = () => reject({ reason: 'timeout' });
-
-      xhr.setRequestHeader('Content-Type', 'application/json');
-
       xhr.withCredentials = true;
       xhr.responseType = 'json';
 
-      if (method === Method.Get || !data) {
-        xhr.send();
+      if (type === 'multipart/form-data') {
+        xhr.send(data);
       } else {
-        xhr.send(JSON.stringify(data));
+        xhr.setRequestHeader('Content-Type', type);
+        if (method === Method.Get || !data) {
+          xhr.send();
+        } else {
+          xhr.send(JSON.stringify(data));
+        }
       }
     });
   }
