@@ -156,6 +156,11 @@ export default class Block {
   }
 
   getContent() {
+    if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+      setTimeout(() => {
+        this.dispatchComponentDidMount();
+      }, 100);
+    }
     return this.element;
   }
 

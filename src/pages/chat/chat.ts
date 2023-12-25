@@ -8,6 +8,7 @@ import DialogWarning from '../../components/chat/dialog-body/dialog-warning';
 import registerComponent from '../../utils/registerComponent';
 import defaultAvatar from '../../components/chat/img/default_avatar.png';
 import profileAvatar from '../../components/chat/img/profile_photo.png';
+import ChatController from '../../controllers/ChatController';
 
 registerComponent('Dialog', Dialog);
 registerComponent('DialogSearch', DialogSearch);
@@ -91,6 +92,12 @@ export default class ChatPage extends Block {
       ],
       avatarDefaultUrl: defaultAvatar,
     });
+  }
+
+  async componentDidMount() {
+    // super.componentDidMount();
+    const chats = await ChatController.getChats();
+    console.log(chats);
   }
 
   render() {
