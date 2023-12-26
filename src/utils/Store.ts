@@ -43,7 +43,7 @@ interface ChangePasswordPage {
 
 interface ChatPage {
   messages?: Record<string, any>;
-  chats?: Record<string, any>;
+  dialogs?: Record<string, any>;
 }
 
 interface StoreData {

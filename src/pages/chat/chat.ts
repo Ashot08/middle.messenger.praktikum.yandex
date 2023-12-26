@@ -9,6 +9,7 @@ import registerComponent from '../../utils/registerComponent';
 import defaultAvatar from '../../components/chat/img/default_avatar.png';
 import profileAvatar from '../../components/chat/img/profile_photo.png';
 import ChatController from '../../controllers/ChatController';
+import store from '../../utils/Store';
 
 registerComponent('Dialog', Dialog);
 registerComponent('DialogSearch', DialogSearch);
@@ -19,6 +20,7 @@ export default class ChatPage extends Block {
     super({
       hasActive: true,
       hasMessages: true,
+      activeChat: '',
       messages: [
         {
           from: 'Семен',
@@ -91,12 +93,23 @@ export default class ChatPage extends Block {
         },
       ],
       avatarDefaultUrl: defaultAvatar,
+      async createChat(e: Event) {
+        e.preventDefault();
+        const title = (<HTMLInputElement>document.querySelector('[name="title"]')).value;
+        if (title) {
+          await ChatController.createChat(title);
+          const chats = await ChatController.getChats();
+          store.set('chatPage.dialogs', chats);
+        }
+        console.log('CREATED');
+      },
     });
   }
 
   async componentDidMount() {
     // super.componentDidMount();
     const chats = await ChatController.getChats();
+    store.set('chatPage.dialogs', chats);
     console.log(chats);
   }
 

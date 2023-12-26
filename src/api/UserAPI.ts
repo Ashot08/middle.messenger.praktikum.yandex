@@ -35,5 +35,9 @@ export default class UserAPI extends BaseAPI {
     return this.http.put('/profile/avatar', data, 'multipart/form-data');
   }
 
+  getUserId(login: string): Promise<string | unknown> {
+    return this.http.post('/search', login);
+  }
+
   delete = undefined;
 }

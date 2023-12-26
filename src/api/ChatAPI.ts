@@ -1,12 +1,7 @@
 import BaseAPI from './BaseAPI';
 
-export interface UserData {
-  first_name: string;
-  second_name: string;
-  display_name: string;
-  login: string;
-  email: string;
-  phone: string;
+export interface CreateChatData {
+  title: string;
 }
 
 export default class ChatAPI extends BaseAPI {
@@ -18,7 +13,17 @@ export default class ChatAPI extends BaseAPI {
     return this.http.get('');
   }
 
-  create = undefined;
+  create(data: CreateChatData): Promise<unknown> {
+    return this.http.post('', data);
+  }
+
+  addUsers(id: number, users: number[]): Promise<unknown> {
+    return this.http.put('/users', { users, chatId: id });
+  }
+
+  removeUsers(id: number, users: number[]): Promise<unknown> {
+    return this.http.delete('/users', { users, chatId: id });
+  }
 
   update = undefined;
 
