@@ -1,0 +1,23 @@
+<form class="auth-form" action="">
+
+    {{#if title}}
+        <div class="auth-form__title">
+            {{title}}
+        </div>
+    {{/if}}
+
+    {{#each fields}}
+        <div class="auth-form__input-group">
+            {{{Input value=value error=error type=type required=required name=name placeholder=placeholder class='input'}}}
+        </div>
+    {{/each}}
+
+    <div class="auth-form__submit">
+        {{{ Button label=buttonLabel class='button_full-width'}}}
+        <div>
+            {{{Link withRoute=true url=linkUrl text=linkText}}}
+        </div>
+    </div>
+
+</form>
+

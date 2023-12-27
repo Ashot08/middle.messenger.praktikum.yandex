@@ -1,0 +1,20 @@
+<div class="dialog-body">
+    {{#if hasActive}}
+        {{#if hasMessages}}
+            <div class="messages">
+                {{#each messages}}
+                    <div class="message{{#if isMe}} message_my{{/if}}">
+                        <div class="message__content">
+                            {{message}}
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
+        {{{DialogInput}}}
+    {{else}}
+        {{{ DialogWarning warning='Выберите чат чтобы отправить сообщение'}}}
+    {{/if}}
+
+</div>
+

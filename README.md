@@ -15,7 +15,7 @@ Simple messenger application. Based on JavaScript, SCSS, Handlebars.
 - `npm run preview` — Run project build preview (before you should run `npm run build`).
 
 ### Backend
-- `npm install` — Install project.
+- no backend, just server.js in `/`
 
 ## Site demo on Netlify
 

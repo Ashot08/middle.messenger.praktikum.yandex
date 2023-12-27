@@ -1,42 +1,26 @@
 <!doctype html>
-<html lang="en">
-
+<html lang="ru">
     <head>
+        <title>Яндекс Практикум. Middle frontend project by Ashot08</title>
         <meta charset="UTF-8">
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-        <title>
-            {{#if meta.title}}
-                {{~meta.title~}}
-            {{else}}
-                Yandex Practicum Project
-            {{/if}}
-        </title>
-
-        <meta name="description"
-              content="{{#if meta.description}}
-                  {{~meta.description~}}
-              {{else}}
-                Yandex Practicum middle frontend developer project by Ashot08
-        {{/if}}"
-        >
+        <link rel="stylesheet" href="./style.scss">
     </head>
 
     <body>
-
-        <div id="app"></div>
-        <nav class="index">
-            {{> link/link url='/pages/login/login.html' text='Login'}}
-            {{> link/link url='/pages/signup/signup.html' text='Sign up'}}
-            {{> link/link url='/pages/profile/profile.html' text='Profile'}}
-            {{> link/link url='/pages/chat/chat.html' text='Chat'}}
-            {{> link/link url='/pages/404/404.html' text='404'}}
-            {{> link/link url='/pages/500/500.html' text='500'}}
-        </nav>
-        <script type="module" src="/main.js"></script>
+        <main>
+            <div id="app"></div>
+        </main>
     </body>
+    <footer id="footer" class="footer">
+        <nav>
+            <a href="/">На главную</a>
+        </nav>
+    </footer>
+    <script type="module" src="./index.ts"></script>
+    <script src="utils/HTTPTransport.ts" type="module"></script>
 </html>
 
 

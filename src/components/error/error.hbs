@@ -1,0 +1,20 @@
+<div id="error-{{#if code}}{{code}}{{/if}}" class="error">
+
+    {{#if code}}
+        <div class="error__code">
+            {{code}}
+        </div>
+    {{/if}}
+
+    {{#if description}}
+        <div class="error__description">
+            {{description}}
+        </div>
+    {{/if}}
+
+    <div class="error__link">
+        {{{Link url=url text=text}}}
+    </div>
+
+</div>
+

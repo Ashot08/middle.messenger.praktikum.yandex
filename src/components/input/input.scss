@@ -1,0 +1,91 @@
+@use "sass:color";
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.input {
+  .label {
+    color: color.adjust($global-font-color, $lightness: 40%);
+    font-weight: 500;
+    position: absolute;
+    left: 0;
+    transform: translate(0, 8px);
+    transition: 0.3s;
+  }
+
+  .text-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #3369F3;
+    padding: 8px 0;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      opacity: 0;
+      font-size: 0;
+      color: transparent;
+    }
+  }
+
+  .text-input:focus + .label,
+  .text-input:valid + .label {
+    font-size: 0.6923em;
+    transform: translate(0, -8px);
+  }
+
+  .validation-error {
+    color: red;
+    font-size: 0.8em;
+    text-align: left;
+    margin: 10px 0;
+  }
+}
+
+.profile-input {
+  position: relative;
+
+  .validation-error {
+    color: red;
+    font-size: 0.8em;
+    text-align: left;
+    margin: 0;
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
+}
+
+
+.search {
+  @include flexbox(center);
+
+  padding: 14px 10px;
+  border-bottom: 1px solid #EAEAEA;
+  position: relative;
+
+  input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #EFEFEF;
+    padding: 9px 10px;
+    text-align: center;
+    font-size: 0.9231em;
+    border-radius: 5px;
+  }
+
+  .label_with-search-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: calc(50% - 35px);
+  }
+
+  .text-input:valid + .label {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+

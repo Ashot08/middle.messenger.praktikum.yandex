@@ -1,0 +1,10 @@
+@use "sass:color";
+@import "../../../../styles/variables";
+
+.dialog-warning{
+  text-align: center;
+  color: color.adjust($global-font-color, $lightness: 40%);
+  font-weight: 500;
+  font-size: 0.9231em;
+}
+

@@ -3,21 +3,26 @@
 
 .chat{
   @include flexbox(center, flex-start, nowrap);
+
   max-width: 1280px;
   margin: 0 auto;
   border-right: 1px solid #EAEAEA;
   border-left: 1px solid #EAEAEA;
+
 }
+
 .chat__aside{
   width: 310px;
-  padding: 30px 10px 0;
+  padding: 30px 0;
   background-color: #FBFBFB;
   height: calc(100vh - 50px);
   overflow-y: auto;
   border-right: 1px solid #EAEAEA;
 }
+
 .chat__body{
   width: 100%;
+  padding: 0 20px;
 }
 
 

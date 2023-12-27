@@ -1,0 +1,44 @@
+<form class="profile-form" action="">
+
+    <div class="profile-form__avatar">
+
+        <label for="profileImageInput">
+        <img src="{{defaultAvatar}}" id="profileImage" width="130px" height="130px" alt="{{name}} avatar" />
+            <input hidden onchange="save()" type="file" id="profileImageInput" />
+        </label>
+
+    </div>
+
+    {{#if name}}
+        <div class="profile-form__username">
+            {{name}}
+        </div>
+    {{/if}}
+
+    {{#each fields}}
+        <div class="profile-form__input-group">
+            {{{Input type=type required=required name=name placeholder=placeholder class='profile-input'}}}
+        </div>
+    {{/each}}
+
+</form>
+
+
+
+<script>
+    const profileImageInput = document.getElementById('profileImageInput');
+    const profileImage = document.getElementById('profileImage');
+
+    function save ()  {
+
+        const f = profileImageInput.files[0];
+
+        if (f) {
+            profileImage.src = URL.createObjectURL(f);
+        }
+
+    }
+
+
+</script>
+
