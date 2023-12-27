@@ -7,7 +7,6 @@ import DialogBody from '../../components/chat/dialog-body';
 import DialogWarning from '../../components/chat/dialog-body/dialog-warning';
 import registerComponent from '../../utils/registerComponent';
 import defaultAvatar from '../../components/chat/img/default_avatar.png';
-import profileAvatar from '../../components/chat/img/profile_photo.png';
 import ChatController from '../../controllers/ChatController';
 import store from '../../utils/Store';
 
@@ -15,81 +14,51 @@ registerComponent('Dialog', Dialog);
 registerComponent('DialogSearch', DialogSearch);
 registerComponent('DialogBody', DialogBody);
 registerComponent('DialogWarning', DialogWarning);
+
 export default class ChatPage extends Block {
   constructor() {
     super({
       hasActive: true,
       hasMessages: true,
       activeChat: '',
+      addResponse: '',
+      removeResponse: '',
       messages: [
         {
-          from: 'Семен',
-          date: '03.02.2012',
-          time: '12:01',
-          message: 'Займи до среды 2000',
+          from: 'Загрузка...',
+          date: '',
+          time: '',
+          message: '',
         },
-        {
-          from: 'Семен',
-          date: '03.02.2012',
-          time: '12:30',
-          message: 'Lorem Ipsum - это текст-рыба, часто используемый в печати и вэб-дизайне. ',
-        },
-        {
-          isMe: true,
-          from: 'Me',
-          date: '03.02.2012',
-          time: '12:31',
-          message: 'Привет, не понял',
-        },
+        // {
+        //   from: 'Семен',
+        //   date: '03.02.2012',
+        //   time: '12:01',
+        //   message: 'Займи до среды 2000',
+        // },
+        // {
+        //   from: 'Семен',
+        //   date: '03.02.2012',
+        //   time: '12:30',
+        //   message: 'Lorem Ipsum - это текст-рыба, часто используемый в печати и вэб-дизайне. ',
+        // },
+        // {
+        //   isMe: true,
+        //   from: 'Me',
+        //   date: '03.02.2012',
+        //   time: '12:31',
+        //   message: 'Привет, не понял',
+        // },
       ],
+      chatMembers: [],
       dialogs: [
         {
           active: false,
-          title: 'Ivan Panov',
-          description: 'че ниотвечаешь.?',
-          avatarUrl: defaultAvatar,
-          unreadMessagesCount: '6',
-          lastMessageTime: '12:00',
-        },
-        {
-          active: true,
-          title: 'Семен',
-          description: 'Lorem Ipsum - это текст-рыба, часто используемый в печати и вэб-дизайне. ',
-          avatarUrl: profileAvatar,
-          unreadMessagesCount: '',
-          lastMessageTime: '12:30',
-        },
-        {
-          active: false,
-          title: 'Сергей (риэлтор)',
-          description: 'Не пиши сюда больше. Денег нет, я сейчас не в городе.',
+          title: 'Загрузка...',
+          description: '',
           avatarUrl: defaultAvatar,
           unreadMessagesCount: '',
-          lastMessageTime: 'Пт',
-        },
-        {
-          active: false,
-          title: 'Валентина ЖЭК',
-          description: 'Когда погасите задолженность за коммуналку?',
-          avatarUrl: defaultAvatar,
-          unreadMessagesCount: '1',
-          lastMessageTime: 'Ср',
-        },
-        {
-          active: false,
-          title: 'Илья Иванов',
-          description: 'Добрый день, отклик на вакансию',
-          avatarUrl: defaultAvatar,
-          unreadMessagesCount: '',
-          lastMessageTime: 'Ср',
-        },
-        {
-          active: false,
-          title: 'Елена Правдина',
-          description: 'Здравствуйте, по вашему обращению создан тикет #345, мы с вами свяжемся',
-          avatarUrl: defaultAvatar,
-          unreadMessagesCount: '',
-          lastMessageTime: 'Вт',
+          lastMessageTime: '',
         },
       ],
       avatarDefaultUrl: defaultAvatar,
@@ -101,7 +70,6 @@ export default class ChatPage extends Block {
           const chats = await ChatController.getChats();
           store.set('chatPage.dialogs', chats);
         }
-        console.log('CREATED');
       },
     });
   }
@@ -110,7 +78,14 @@ export default class ChatPage extends Block {
     // super.componentDidMount();
     const chats = await ChatController.getChats();
     store.set('chatPage.dialogs', chats);
-    console.log(chats);
+    store.set('chatPage.updateChatUsersList', updateChatUsersList);
+    async function updateChatUsersList() {
+      const chatId = store.getState().chatPage?.activeChat;
+      if (chatId) {
+        const chatsUsers = await ChatController.getChatsUsers(chatId as number);
+        store.set('chatPage.chatMembers', chatsUsers);
+      }
+    }
   }
 
   render() {

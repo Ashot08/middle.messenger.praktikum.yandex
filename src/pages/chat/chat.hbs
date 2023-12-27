@@ -7,7 +7,6 @@
                 {{{DialogSearch}}}
             </div>
             <div class="chat__dialogs">
-                {{activeChat}}
                 {{#each dialogs}}
                     {{{Dialog
                             id=id
@@ -28,7 +27,14 @@
             </form>
         </aside>
         <div class="chat__body">
-            {{{DialogBody hasMessages=hasMessages messages=messages hasActive=hasActive}}}
+            {{{DialogBody
+                    chatMembers=chatMembers
+                    addResponse=addResponse
+                    removeResponse=removeResponse
+                    activeChatId=activeChat
+                    hasMessages=hasMessages
+                    messages=messages
+                    hasActive=hasActive}}}
         </div>
     </div>
 

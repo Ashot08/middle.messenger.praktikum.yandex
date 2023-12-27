@@ -44,6 +44,8 @@ interface ChangePasswordPage {
 interface ChatPage {
   messages?: Record<string, any>;
   dialogs?: Record<string, any>;
+  activeChat: number;
+  updateChatUsersList:() => void;
 }
 
 interface StoreData {

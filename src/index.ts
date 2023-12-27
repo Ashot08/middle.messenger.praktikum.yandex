@@ -18,6 +18,7 @@ import Error500Page from './pages/500';
 import SignupPage from './pages/signup';
 import AuthController from './controllers/AuthController';
 import { Routes } from './constants/routes';
+import Form from './components/form/form';
 
 registerComponent('Input', Input);
 registerComponent('Button', Button);
@@ -27,6 +28,7 @@ registerComponent('Page', Page);
 registerComponent('AuthForm', AuthForm);
 registerComponent('Error', Error);
 registerComponent('ProfileForm', ProfileForm);
+registerComponent('Form', Form);
 // registerComponent('HomePage', HomePage);
 // registerComponent('LoginPage', LoginPage);
 // registerComponent('SignupPage', SignupPage);

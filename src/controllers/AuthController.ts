@@ -3,6 +3,7 @@ import store from '../utils/Store';
 import Router from '../utils/Router';
 import { Routes } from '../constants/routes';
 import { profileFields } from '../constants/profileFields';
+import MessageController from './MessageController';
 
 export interface ControllerSignUpData extends SignUpData {
   confirm_password: string;
@@ -65,6 +66,7 @@ class AuthController {
       router.removeRedirect(Routes.Login);
       router.removeRedirect(Routes.Register);
       router.go(Routes.Login);
+      MessageController.closeAll();
     } catch (e) {
       throw new Error('logout error');
     }

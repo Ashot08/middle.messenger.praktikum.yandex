@@ -6,6 +6,58 @@
   position: relative;
 
   @include flexbox(flex-start, flex-end, wrap, column);
+
+  .chat-top-panel {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background-color: #fff;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .chat-members {
+      margin-bottom: 40px;
+
+      strong {
+        font-weight: 600;
+      }
+
+      &__title {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .chat-member {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  .chat-forms {
+
+    form {
+      position: relative;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 400px;
+
+      button {
+        order: 2;
+      }
+
+      .form-response {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        border: 1px solid red;
+        margin-bottom: 10px;
+        max-width: 300px;
+      }
+    }
+  }
 }
 
 .messages {

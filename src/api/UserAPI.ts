@@ -14,6 +14,10 @@ export interface PasswordData {
   newPassword: string;
 }
 
+export interface GetUserIdData {
+  login: string,
+}
+
 export default class UserAPI extends BaseAPI {
   constructor() {
     super('/user');
@@ -35,7 +39,7 @@ export default class UserAPI extends BaseAPI {
     return this.http.put('/profile/avatar', data, 'multipart/form-data');
   }
 
-  getUserId(login: string): Promise<string | unknown> {
+  getUserId(login: GetUserIdData): Promise<string | unknown> {
     return this.http.post('/search', login);
   }
 

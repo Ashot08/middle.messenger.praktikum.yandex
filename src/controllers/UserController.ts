@@ -50,6 +50,21 @@ class UserController {
     store.set('profilePage.response', 'Аватар успешно заменен');
     return response;
   }
+
+  async getUserId(login: string) {
+    let response: any;
+    try {
+      response = await this.api.getUserId({ login });
+      if (Array.isArray(response)) {
+        if (!response.length || response.length > 1) {
+          throw new Error('Пользователей с таким логином не найдено');
+        }
+      }
+      return response[0].id;
+    } catch (e: any) {
+      return e.reason;
+    }
+  }
 }
 
 export default new UserController();

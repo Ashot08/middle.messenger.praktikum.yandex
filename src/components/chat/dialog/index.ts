@@ -11,6 +11,7 @@ interface IDialog {
   events?: {
     click?: () => void;
   };
+  updateChatUsersList: () => void;
 }
 
 export default class Dialog extends Block {
@@ -19,7 +20,7 @@ export default class Dialog extends Block {
       ...props,
       defaultAvatar,
       events: {
-        click() {
+        async click() {
           store.set('chatPage.activeChat', props.id);
           const dialogs = store.getState().chatPage?.dialogs;
           if (Array.isArray(dialogs)) {
@@ -32,6 +33,7 @@ export default class Dialog extends Block {
               return d;
             }));
           }
+          store.getState().chatPage?.updateChatUsersList();
         },
       },
     });
