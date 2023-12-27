@@ -11,7 +11,7 @@
     "build": "npm run prebuild && vite build",
     "prebuild": "tsc --noEmit",
     "preview": "vite preview",
-    "start": "vite build && node server.js",
+    "start": "vite build && node ./server.js",
     "lint": "eslint '**/*.ts'",
     "stylelint": "npx stylelint \"**/*.scss\""
   },
