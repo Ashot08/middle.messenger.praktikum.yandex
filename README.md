@@ -2,11 +2,11 @@
 ---
 ## Description
 
-Simple messenger application. Based on JavaScript, SCSS, Handlebars.
+Simple messenger application. Based on JavaScript, SCSS, Handlebars, Websocket.
 
 ## Installation
 
-### Frontend
+### Scripts
 
 - `npm install` — Install project,
 - `npm run start` — Build & start project with Express server (before you also should run `npm install` at `/backend` directory),
@@ -14,8 +14,6 @@ Simple messenger application. Based on JavaScript, SCSS, Handlebars.
 - `npm run build` — Build project.
 - `npm run preview` — Run project build preview (before you should run `npm run build`).
 
-### Backend
-- no backend, just server.js in `/`
 
 ## Site demo on Netlify
 
@@ -27,17 +25,17 @@ Link to [Figma design](https://www.figma.com/file/i8GyMM9BWTR9DNHKQV9HKi/YP-Mess
 
 ## Routes to Pages in project
 
-Login page: `/pages/login/login.html`
+Login page: `/login`
 
-Sign up: `/pages/signup/signup.html`
+Sign up: `/sign-up`
 
-Profile: `/pages/profile/profile.html`
+Profile: `/profile`
 
-Chat: `/pages/chat/chat.html`
+Chat: `/messenger`
 
-404: `/pages/404/404.html`
+404: `/404`
 
-500: `/pages/500/500.html`
+500: `/500`
 
 
 
