@@ -1,3 +1,5 @@
+import { queryString } from './queryString';
+
 export enum Method {
   Get = 'Get',
   Post = 'Post',
@@ -11,6 +13,10 @@ type Options = {
   data?: any;
 };
 
+type PlainObject<T = unknown> = {
+  [k in string]: T;
+};
+
 export default class HTTPTransport {
   static API_URL = 'https://ya-praktikum.tech/api/v2';
 
@@ -20,7 +26,9 @@ export default class HTTPTransport {
     this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
   }
 
-  public get<Response>(path = '/'): Promise<Response> {
+  public get<Response>(path = '/', queryParams: PlainObject = {}): Promise<Response> {
+    const query = queryString(queryParams);
+    path += query ? `?${query}` : '';
     return this.request<Response>(this.endpoint + path);
   }
 
