@@ -30,7 +30,7 @@
   }
 
   .text-input:focus + .label,
-  .text-input:valid + .label {
+  .text-input:valid + .label{
     font-size: 0.6923em;
     transform: translate(0, -8px);
   }

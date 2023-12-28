@@ -1,8 +1,6 @@
-import Block from '../../utils/Block';
-import template from './home.hbs';
+import HomePage from './home';
+import { withStore } from '../../utils/Store';
 
-export default class HomePage extends Block {
-  render() {
-    return this.compile(template, this.props);
-  }
-}
+const withUser = withStore((state) => ({ ...state.homePage }));
+
+export default withUser(HomePage);

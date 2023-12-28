@@ -1,0 +1,17 @@
+<form class="{{class}}">
+    {{children}}
+
+    <button>
+        {{#if buttonLabel}}
+            {{buttonLabel}}
+        {{else}}
+            Отправить
+        {{/if}}
+    </button>
+    {{#if response}}
+        <div class="form-response">
+            {{response}}
+        </div>
+    {{/if}}
+</form>
+

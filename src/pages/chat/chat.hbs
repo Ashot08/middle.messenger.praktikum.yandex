@@ -1,16 +1,19 @@
 {{#Base}}
 
 <div id="chat" class="chat-page">
-
     <div class="chat">
         <aside class="chat__aside">
+            <div class="chat__nav">
+                {{{Link withRoute=true onClick=onLinkClick url='/settings' text='В профиль'}}}
+            </div>
+
             <div class="chat__search">
                 {{{DialogSearch}}}
             </div>
             <div class="chat__dialogs">
-
                 {{#each dialogs}}
                     {{{Dialog
+                            id=id
                             active=active
                             title=title
                             description=description
@@ -19,11 +22,23 @@
                             lastMessageTime=lastMessageTime
                     }}}
                 {{/each}}
-
             </div>
+
+            <form class="create-chat-form" action="">
+                <h4>Создать чат</h4>
+                {{{Input type='text' required='required' name='title' placeholder='Название чата'}}}
+                {{{ Button onClick=createChat label='Создать'}}}
+            </form>
         </aside>
         <div class="chat__body">
-            {{{DialogBody hasMessages=hasMessages messages=messages hasActive=hasActive}}}
+            {{{DialogBody
+                    chatMembers=chatMembers
+                    addResponse=addResponse
+                    removeResponse=removeResponse
+                    activeChatId=activeChat
+                    hasMessages=hasMessages
+                    messages=messages
+                    hasActive=hasActive}}}
         </div>
     </div>
 

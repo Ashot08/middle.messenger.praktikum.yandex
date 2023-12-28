@@ -21,7 +21,7 @@ export default class Block {
 
   protected refs: Record<string, Block> = {};
 
-  constructor(propsWithChildren: object = {}) {
+  constructor(propsWithChildren: any = {}) {
     const {
       props,
       children,
@@ -113,13 +113,12 @@ export default class Block {
     return true;
   }
 
-  setProps = (nextProps: any): void => {
+  setProps(nextProps: any): void {
     if (!nextProps) {
       return;
     }
-
     Object.assign(this.props, nextProps);
-  };
+  }
 
   get element(): HTMLElement | null {
     return this._element;
@@ -157,6 +156,11 @@ export default class Block {
   }
 
   getContent() {
+    if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+      setTimeout(() => {
+        this.dispatchComponentDidMount();
+      }, 100);
+    }
     return this.element;
   }
 
