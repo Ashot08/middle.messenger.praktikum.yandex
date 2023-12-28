@@ -7,11 +7,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run lint && npm run stylelint && vite",
+    "dev": "vite",
     "build": "npm run prebuild && vite build",
     "prebuild": "tsc --noEmit",
     "preview": "vite preview",
-    "start": "vite build && node server.js",
+    "start": "vite build && node ./server.js",
     "lint": "eslint '**/*.ts'",
     "stylelint": "npx stylelint \"**/*.scss\""
   },

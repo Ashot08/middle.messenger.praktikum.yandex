@@ -1,3 +1,8 @@
-<button class="button {{class}}">
+<button
+    {{#if submitDisabled}}
+    disabled
+    {{/if}}
+    class="button {{class}}"
+>
     {{label}}
 </button>

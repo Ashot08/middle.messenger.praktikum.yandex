@@ -1,11 +1,41 @@
 <div class="dialog-body">
-    {{#if hasActive}}
+    {{#if activeChatId}}
+        <div class="chat-top-panel">
+            <div class="chat-members">
+                <div class="chat-members__title">
+                    <strong>В чате:</strong>
+                </div>
+                <ul>
+                    {{#each chatMembers}}
+                        <li class="chat-member">
+                            <div class="chat-member__icon">
+                                <svg fill="gray" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>account</title><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>
+                            </div>
+                            <div class="chat-member__name">{{first_name}} {{second_name}}</div>
+                            <div class="chat-member__login">({{login}})</div>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+
+            <div class="chat-forms">
+                {{#Form response=addResponse onSubmit=addUserToChat buttonLabel='Добавить пользователя'}}
+                    {{{Input type='text' required='required' name='login' placeholder='Логин' class='input'}}}
+                {{/Form}}
+
+                {{#Form response=removeResponse onSubmit=removeUserFromChat buttonLabel='Удалить пользователя'}}
+                    {{{Input type='text' required='required' name='login' placeholder='Логин' class='input'}}}
+                {{/Form}}
+            </div>
+        </div>
+
+
         {{#if hasMessages}}
             <div class="messages">
                 {{#each messages}}
                     <div class="message{{#if isMe}} message_my{{/if}}">
                         <div class="message__content">
-                            {{message}}
+                            {{content}}
                         </div>
                     </div>
                 {{/each}}
@@ -13,7 +43,7 @@
         {{/if}}
         {{{DialogInput}}}
     {{else}}
-        {{{ DialogWarning warning='Выберите чат чтобы отправить сообщение'}}}
+        {{{ DialogWarning warning='Выберите чат, чтобы отправить сообщение'}}}
     {{/if}}
 
 </div>

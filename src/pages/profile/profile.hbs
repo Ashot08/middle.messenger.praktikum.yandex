@@ -3,14 +3,33 @@
 <div id="profile" class="profile-page">
 
     {{#Page}}
-        {{{ProfileForm name=userName fields=fields}}}
+        <div class="profile-page__nav">
+           {{{Link withRoute=true onClick=onLinkClick url='/messenger' text='↩ В чат'}}}
+        </div>
+
+        <div class="profile-form__avatar">
+            <form action="">
+                <label for="profileImageInput">
+                    {{#if currentUser.avatar}}
+                        <img src="https://ya-praktikum.tech/api/v2/resources{{currentUser.avatar}}" id="profileImage" width="130px" height="130px" alt="{{name}} avatar" />
+                    {{else}}
+                        <img src="{{defaultAvatar}}" id="profileImage" width="130px" height="130px" alt="{{name}} avatar" />
+                    {{/if}}
+
+
+                </label>
+                <input type="file" id="profileImageInput" />
+                {{{ Button onClick=changeAvatar label='Сохранить'}}}
+            </form>
+        </div>
+
+        {{{ProfileForm response=response submitDisabled=submitDisabled formClass=formClass onSubmit=onUpdate user=currentUser name=currentUser.first_name fields=fields}}}
         <div class="profile-page__controls">
-            {{{ Link url='#' text='Изменить данные'}}}
-            {{{ Link url='#' text='Изменить пароль'}}}
-            {{{ Link url='#' text='Выйти'}}}
+            {{{Link withRoute=true onClick=onLinkClick url='/settings/changePassword' text='Сменить пароль'}}}
+
+            {{{ Button onClick=onLogout label='Выйти'}}}
         </div>
     {{/Page}}
 
 </div>
-
 {{/Base}}

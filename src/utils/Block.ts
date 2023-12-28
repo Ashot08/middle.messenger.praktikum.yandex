@@ -21,8 +21,11 @@ export default class Block {
 
   protected refs: Record<string, Block> = {};
 
-  constructor(propsWithChildren: object = {}) {
-    const { props, children } = this._getChildrenAndProps(propsWithChildren);
+  constructor(propsWithChildren: any = {}) {
+    const {
+      props,
+      children,
+    } = this._getChildrenAndProps(propsWithChildren);
 
     this.props = this._makePropsProxy(props);
 
@@ -39,23 +42,41 @@ export default class Block {
     const props: Record<string, any> = {};
     const children: Record<string, Block> = {};
 
-    Object.entries(childrenAndProps).forEach(([key, value]) => {
-      if (value instanceof Block) {
-        children[key] = value;
-      } else {
-        props[key] = value;
-      }
-    });
+    Object.entries(childrenAndProps)
+      .forEach(([key, value]) => {
+        if (value instanceof Block) {
+          children[key] = value;
+        } else {
+          props[key] = value;
+        }
+      });
 
-    return { props, children };
+    return {
+      props,
+      children,
+    };
+  }
+
+  _removeEvents() {
+    const events: Record<string, () => void> = (this.props as any).events;
+
+    if (!events || !this._element) {
+      return;
+    }
+
+    Object.entries(events)
+      .forEach(([event, listener]) => {
+        this._element!.removeEventListener(event, listener);
+      });
   }
 
   _addEvents() {
     const { events = {} } = this.props as { events: Record<string, () => void> };
 
-    Object.keys(events).forEach((eventName) => {
-      this._element?.addEventListener(eventName, events[eventName]);
-    });
+    Object.keys(events)
+      .forEach((eventName) => {
+        this._element?.addEventListener(eventName, events[eventName]);
+      });
   }
 
   _registerEvents(eventBus: EventBus): void {
@@ -92,13 +113,12 @@ export default class Block {
     return true;
   }
 
-  setProps = (nextProps: any): void => {
+  setProps(nextProps: any): void {
     if (!nextProps) {
       return;
     }
-
     Object.assign(this.props, nextProps);
-  };
+  }
 
   get element(): HTMLElement | null {
     return this._element;
@@ -108,16 +128,21 @@ export default class Block {
     const fragment: DocumentFragment = this.render();
     const newElement = fragment.firstElementChild as HTMLElement;
     if (this._element) {
+      this._removeEvents();
       this._element.replaceWith(newElement);
     }
     this._element = newElement;
     this._addEvents();
   }
 
-  render(): any {}
+  render(): any {
+  }
 
   protected compile(template: (context: any) => string, context: any) {
-    const contextAndStubs = { ...context, __refs: this.refs };
+    const contextAndStubs = {
+      ...context,
+      __refs: this.refs,
+    };
     const html = template(contextAndStubs);
     const temp = document.createElement('template');
 
@@ -131,6 +156,11 @@ export default class Block {
   }
 
   getContent() {
+    if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+      setTimeout(() => {
+        this.dispatchComponentDidMount();
+      }, 100);
+    }
     return this.element;
   }
 
@@ -159,7 +189,7 @@ export default class Block {
     return document.createElement(tagName);
   }
 
-  show() :void {
+  show(): void {
     const element = this.getContent();
     if (element) {
       element.style.display = 'block';
