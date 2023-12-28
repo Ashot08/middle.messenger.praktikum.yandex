@@ -3,6 +3,10 @@
 <div id="chat" class="chat-page">
     <div class="chat">
         <aside class="chat__aside">
+            <div class="chat__nav">
+                {{{Link withRoute=true onClick=onLinkClick url='/settings' text='В профиль'}}}
+            </div>
+
             <div class="chat__search">
                 {{{DialogSearch}}}
             </div>

@@ -16,8 +16,10 @@ export default class DialogInput extends Block {
           e.preventDefault();
           const formData = new FormData(<HTMLFormElement> e.target);
           const message = formData.get('message');
-          MessageController
-            .sendMessage(store.getState().chatPage?.activeChat as number, message as string);
+          if (message) {
+            MessageController
+              .sendMessage(store.getState().chatPage?.activeChat as number, message as string);
+          }
         },
       },
     });

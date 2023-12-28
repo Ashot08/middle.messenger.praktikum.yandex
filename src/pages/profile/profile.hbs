@@ -3,6 +3,9 @@
 <div id="profile" class="profile-page">
 
     {{#Page}}
+        <div class="profile-page__nav">
+           {{{Link withRoute=true onClick=onLinkClick url='/messenger' text='↩ В чат'}}}
+        </div>
 
         <div class="profile-form__avatar">
             <form action="">
