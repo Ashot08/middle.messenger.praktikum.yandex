@@ -12,8 +12,10 @@ interface IInput {
   class: string;
   onFocusOut?: () => void;
   searchIcon?: string;
+  onChange?: (e: Event) => void;
   events?: {
     focusout?: (e: Event) => void;
+    change?: (e: Event) => void;
   };
 }
 

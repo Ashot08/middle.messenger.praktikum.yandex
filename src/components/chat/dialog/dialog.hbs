@@ -1,6 +1,11 @@
 <div class="dialog {{#if active}}dialog_active{{/if}}">
     <div class="dialog__thumbnail">
-        <img src="{{avatarUrl}}" alt="{{title}}">
+        {{#if avatarUrl}}
+            <img src="{{avatarUrl}}" alt="{{title}}">
+        {{else}}
+            <img src="{{defaultAvatar}}" alt="{{title}}">
+        {{/if}}
+
     </div>
     <div class="dialog__content">
         <div class="dialog__title">{{title}}</div>
