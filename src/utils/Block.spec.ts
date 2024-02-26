@@ -64,6 +64,7 @@ describe('Block', () => {
     const element = pageComponent.getContent();
     document.body.append(element!);
     clock.next();
+    clock.restore();
     expect(spyCDM.calledOnce).to.be.true;
   });
 });
