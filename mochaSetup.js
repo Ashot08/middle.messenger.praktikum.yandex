@@ -5,9 +5,9 @@ const { window } = new JSDOM('<div id="app"></div>', {
 });
 
 // jsdom
-const jsdom = new JSDOM('<body></body>');
+// const jsdom = new JSDOM('<body></body>');
 
-global.window = jsdom.window;
-global.document = jsdom.window.document;
-global.Node = jsdom.window.Node;
-global.MouseEvent = jsdom.window.MouseEvent;
+global.window = window;
+global.document = window.document;
+global.Node = window.Node;
+global.MouseEvent = window.MouseEvent;

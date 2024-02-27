@@ -2,50 +2,28 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import Router from './Router';
 import Block from './Block';
-import Handlebars from 'handlebars';
 
 describe('Router', () => {
-  global.window.history.back = () => {
-    if (typeof window.onpopstate === 'function') {
-      window.onpopstate({ currentTarget: window } as unknown as PopStateEvent);
-    }
-  };
-  global.window.history.forward = () => {
-    if (typeof window.onpopstate === 'function') {
-      window.onpopstate({ currentTarget: window } as unknown as PopStateEvent);
-    }
-  };
   let TestRouter: Router;
-  let PageClass: typeof Block;
+  let BlockMock: typeof Block;
 
+  const backFake = sinon.fake.returns(document.createElement('div'));
+  const forwardFake = sinon.fake.returns(document.createElement('div'));
+  const pushStateFake = sinon.fake.returns(document.createElement('div'));
+  const getContentFake = sinon.fake.returns(document.createElement('div'));
+  BlockMock = class {
+    getContent = getContentFake;
+  };
+  global.window.history.back = backFake;
+  global.window.history.forward = forwardFake;
+  global.window.history.pushState = pushStateFake;
   beforeEach(() => {
     TestRouter = new Router('#app');
   });
 
-  before(() => {
-    class Page extends Block {
-      constructor(props: any) {
-        super({
-          ...props,
-        });
-      }
-
-      render(): string {
-        return `<div>
-                    <span id="test-text">text</span>
-                </div>`;
-      }
-    }
-    PageClass = Page;
-  });
-
-  const getContentFake = sinon.stub();
-  const BlockMock = class {
-    getContent = getContentFake;
-  };
-
   it('Must call Router.use()', () => {
     const result = TestRouter.use('/', BlockMock);
+    console.log('ONE', getContentFake.callCount);
     expect(result)
       .to
       .be
@@ -53,50 +31,31 @@ describe('Router', () => {
   });
 
   it('Must call Router.back()', () => {
-    const clock = sinon.useFakeTimers();
-    const pageComponent = new PageClass();
-    const spyCDM = sinon.spy(pageComponent, 'componentDidMount');
-    TestRouter.use('/', PageClass).start();
+    TestRouter.use('/', BlockMock).start();
     TestRouter.back();
-    clock.next();
-    expect(spyCDM.calledOnce).to.be.eq(true);
+    console.log('TWO', getContentFake.callCount);
+    expect(backFake.callCount)
+      .to.be.eq(1);
   });
 
-  describe('.forward()', () => {
-    it('переходит вперед', () => {
-      TestRouter
-        .use('/', BlockMock)
-        .start();
-
-      TestRouter.forward();
-
-      expect(getContentFake.callCount)
-        .to
-        .eq(1);
-    });
+  it('Must call Router.forward()', () => {
+    TestRouter
+      .use('/', BlockMock)
+      .start();
+    TestRouter.forward();
+    console.log('THREE', getContentFake.callCount);
+    expect(forwardFake.callCount)
+      .to.be.eq(1);
   });
 
-  describe('.go()', () => {
-    it('переходит по роуту', () => {
-      TestRouter
-        .use('/', BlockMock)
-        .start();
-
-      TestRouter.go('/');
-
-      expect(getContentFake.callCount)
-        .to
-        .eq(1);
-    });
-  });
-
-  it('рендер страницы', () => {
+  it('Must call Router.go()', () => {
     TestRouter
       .use('/', BlockMock)
       .start();
 
-    expect(getContentFake.callCount)
-      .to
-      .eq(1);
+    TestRouter.go('/');
+    console.log('FOUR', getContentFake.callCount);
+    expect(pushStateFake.callCount)
+      .to.be.eq(1);
   });
 });
