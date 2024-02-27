@@ -2,7 +2,7 @@
 ---
 ## Description
 
-Simple messenger application. Based on JavaScript, SCSS, Handlebars, Websocket.
+Simple messenger application. Based on JavaScript, SCSS, Handlebars, Websocket. Unit tests with Mocha & Chai.
 
 ## Installation
 

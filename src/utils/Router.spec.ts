@@ -20,8 +20,7 @@ describe('Router', () => {
   });
 
   it('Must call Router.use()', () => {
-    const result = TestRouter.use('/', BlockMock);
-    console.log('ONE', getContentFake.callCount);
+    const result = TestRouter.use('/', BlockMock as unknown as typeof Block);
     expect(result)
       .to
       .be
@@ -29,30 +28,27 @@ describe('Router', () => {
   });
 
   it('Must call Router.back()', () => {
-    TestRouter.use('/', BlockMock).start();
+    TestRouter.use('/', BlockMock as unknown as typeof Block).start();
     TestRouter.back();
-    console.log('TWO', getContentFake.callCount);
     expect(backFake.callCount)
       .to.be.eq(1);
   });
 
   it('Must call Router.forward()', () => {
     TestRouter
-      .use('/', BlockMock)
+      .use('/', BlockMock as unknown as typeof Block)
       .start();
     TestRouter.forward();
-    console.log('THREE', getContentFake.callCount);
     expect(forwardFake.callCount)
       .to.be.eq(1);
   });
 
   it('Must call Router.go()', () => {
     TestRouter
-      .use('/', BlockMock)
+      .use('/', BlockMock as unknown as typeof Block)
       .start();
 
     TestRouter.go('/');
-    console.log('FOUR', getContentFake.callCount);
     expect(pushStateFake.callCount)
       .to.be.eq(1);
   });
