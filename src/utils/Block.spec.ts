@@ -23,8 +23,7 @@ describe('Block', () => {
         const template = `<div>
                     <span id="test-text">{{text}}</span>
                 </div>`;
-        // @ts-ignore
-        return this.compile(Handlebars.compile(template), this.props);
+        return this.compile(Handlebars.compile(template), this.props) as unknown as string;
       }
     }
 

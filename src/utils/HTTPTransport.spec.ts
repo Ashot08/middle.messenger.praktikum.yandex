@@ -10,6 +10,7 @@ describe('HTTPTransport', () => {
 
   beforeEach(() => {
     xhr = sinon.useFakeXMLHttpRequest();
+    /* @typescript-eslint/ban-ts-comment */
     // @ts-ignore
     global.XMLHttpRequest = xhr;
     xhr.onCreate = ((request: SinonFakeXMLHttpRequest) => {
