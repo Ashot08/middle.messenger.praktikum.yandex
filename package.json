@@ -15,7 +15,7 @@
     "start": "vite build && node ./server.js",
     "lint": "eslint '**/*.ts'",
     "stylelint": "npx stylelint \"**/*.scss\"",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "devDependencies": {
     "@types/chai": "^4.3.12",
