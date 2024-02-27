@@ -58,4 +58,5 @@ describe('Router', () => {
     expect(pushStateFake.callCount)
       .to.be.eq(1);
   });
+  var olg = 2;
 });
