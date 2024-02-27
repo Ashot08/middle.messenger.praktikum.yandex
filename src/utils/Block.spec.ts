@@ -54,6 +54,7 @@ describe('Block', () => {
     });
     const event = new MouseEvent('click');
     pageComponent.element?.dispatchEvent(event);
+    // eslint-disable-next-line no-unused-expressions
     expect(handlerStub.calledOnce).to.be.true;
   });
 
@@ -65,6 +66,7 @@ describe('Block', () => {
     document.body.append(element!);
     clock.next();
     clock.restore();
+    // eslint-disable-next-line no-unused-expressions
     expect(spyCDM.calledOnce).to.be.true;
   });
 });

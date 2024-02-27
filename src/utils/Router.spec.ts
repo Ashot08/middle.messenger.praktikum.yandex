@@ -5,13 +5,11 @@ import Block from './Block';
 
 describe('Router', () => {
   let TestRouter: Router;
-  let BlockMock: typeof Block;
-
   const backFake = sinon.fake.returns(document.createElement('div'));
   const forwardFake = sinon.fake.returns(document.createElement('div'));
   const pushStateFake = sinon.fake.returns(document.createElement('div'));
   const getContentFake = sinon.fake.returns(document.createElement('div'));
-  BlockMock = class {
+  const BlockMock = class {
     getContent = getContentFake;
   };
   global.window.history.back = backFake;
