@@ -45,7 +45,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "test lint stylelint"
+      "pre-commit": "npm run test && npm run lint && npm run stylelint"
     }
   }
 }
