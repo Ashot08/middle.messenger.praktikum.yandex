@@ -1,17 +1,15 @@
-import sinon, { SinonFakeXMLHttpRequest, SinonFakeXMLHttpRequestStatic } from 'sinon';
+import sinon, { SinonFakeXMLHttpRequest } from 'sinon';
 import { expect } from 'chai';
 import HTTPTransport from './HTTPTransport';
 import { Config } from '../constants/config';
 
 describe('HTTPTransport', () => {
-  let xhr: SinonFakeXMLHttpRequestStatic;
+  let xhr: any;
   let instance: HTTPTransport;
   let requests: SinonFakeXMLHttpRequest[] = [];
 
   beforeEach(() => {
     xhr = sinon.useFakeXMLHttpRequest();
-    /* @typescript-eslint/ban-ts-comment */
-    // @ts-ignore
     global.XMLHttpRequest = xhr;
     xhr.onCreate = ((request: SinonFakeXMLHttpRequest) => {
       requests.push(request);
