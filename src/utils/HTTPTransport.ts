@@ -1,4 +1,5 @@
 import { queryString } from './queryString';
+import { Config } from '../constants/config';
 
 export enum Method {
   Get = 'Get',
@@ -18,7 +19,7 @@ type PlainObject<T = unknown> = {
 };
 
 export default class HTTPTransport {
-  static API_URL = 'https://ya-praktikum.tech/api/v2';
+  static API_URL = Config.HOST;
 
   protected endpoint: string;
 

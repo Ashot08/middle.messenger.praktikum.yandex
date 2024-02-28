@@ -58,7 +58,7 @@ interface StoreData {
   chatPage?: ChatPage;
 }
 
-class Store extends EventBus {
+export class Store extends EventBus {
   private state : StoreData = {};
 
   public getState() {

@@ -26,5 +26,16 @@
     "no-continue": 0,
     "no-prototype-builtins": 0,
     "max-classes-per-file": 1
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.spec.ts",
+        "**/*.spec.tsx"
+      ],
+      "env": {
+        "mocha": true
+      }
+    }
+  ]
 }
